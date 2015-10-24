@@ -1,0 +1,36 @@
+<!doctype html>
+<html ng-app="tabApp">
+	<head>
+		<title>Todo</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+		<script type="text/javascript" src="javascripts/todo.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+		<div ng-controller="MainCtrl">
+			<section>
+				<ul class="nav nav-tabs" ng-init="activeTab='Create'">
+					<li ng-class="{active:activeTab == 'Create'}">
+						<a href ng-click="activeTab = 'Create'">Create</a>
+					</li>
+					<li ng-class?"{active:activeTab == 'Upload'}">
+						<a href ng-click="activeTab = 'Upload'">Upload</a>
+					</li>
+				</ul>
+				<!--<p ng-show="activeTab === 'Create'">I am a create paragraph</p>
+				<p ng-show="activeTab === 'Upload'">I am a upload paragraph</p>	-->
+				<div
+					ng-show="activeTab == 'Create'"
+					ng-include="'pages/Create.html'"
+				></div>
+				<div
+					ng-show="activeTab == 'Upload'"
+					ng-include="'pages/Upload.html'"
+				></div>
+			</section>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="javascripts/buttons.js"></script>
+	</head>
+	<body>
+		<div ng-controller="SolutionsController">	
+			<div class="row">
+				<div class="col-md-12">
+					<div ng-show="solutions.length == 0">
+						<h4>No solutions uploaded</h4>
+					</div>
+					<div class="fileWrapper" style="">
+						<div class="file" ng-repeat="solution in solutions" id="{{solution}}">
+							<button class="btn btn-info btn-file btn-preview" id="{{solved}}" style="position:relative" ng-click="previewFile()">Preview</button>
+
+							<button class="btn btn-primary btn-file btn-download" id="{{solution}}" style="position:relative">Download</button>
+
+							<h3 id="{{indexFunction(solutions,solution)}}">{{splitFunction(solution,'-')[1] + '-' + splitFunction(solution,'-')[3]}}</h3>
+
+							<p>
+								{{preview}}
+							</p>
+						</div>
+						<!--<%for(var i=0;i<solved.length;i++){%>
+						<div class="file" id="<%=solved[i]%>">
+						
+						 
+						<div class="preview" id="<%='preview'+solved[i]%>"><p></p></div>
+						</div>
+						
+						<%}%>-->
+					</div>
+				</div><!-- Col  end-->
+			</div><!-- Row end -->
+		</div>
+	</body>
+</html>

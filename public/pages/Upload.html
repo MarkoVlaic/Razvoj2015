@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="ProfileApp">
+	<head></head>
+	<body>
+		<div class="container-fluid" ng-controller="UploadController">
+			<div class="row">
+				<div class="col-md-12" id="uploadWrapper">
+					
+					<div ng-show="tasksToSolve.length == 0"><h4>No tasks to upload</h4></div>
+
+					<div ng-repeat="task in tasksToSolve">
+							<form action="/uploadTask" method="post" enctype="multipart/form-data">
+							<label name="label">{{task.title}} - <a href="/{{task.author}}">{{task.author}}</a></label>
+							<input type="hidden" name="info" 
+							value="{{task.title}} {{task.author}}">
+							<input type="file" name="fileUpload">
+							<input type="submit" class="btn btn-default" value="Upload">
+						</form>
+					</div>
+					
+					<!-- {{setTasksToSolve([1,2,3,4])}} -->
+					<!--
+					<%=tasksToSolve = {{tasks()}}%>
+
+					<%for(var i=0;i<tasksToSolve.length;i++){%>
+						<form action="/uploadTask" method="post" enctype="multipart/form-data">
+							<label name="label"><%=tasksToSolve[i].title%> - <a href="/<%=stasksToSolve[i].author%>"><%=tasksToSolve[i].author%></a></label>
+							<input type="hidden" name="info" 
+							value="<%=tasksToSolve[i].title%> <%=tasksToSolve[i].author%>">
+							<input type="file" name="fileUpload">
+							<input type="submit" class="btn btn-default" value="Upload">
+						</form>
+					<%}%>
+				</div>-->	
+			</div><!-- Row end -->
+		</div>
+	</body>
+</html>
