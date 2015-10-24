@@ -23,7 +23,7 @@ router.get('/',function(req, res) {
               if(req.isAuthenticated() && req.user[0].username == user.username){
                 //render logged in page
                 console.log('Loggedd in');
-                res.render('profile',usr[0]);
+                res.render(req.user[0].type + 'Profile',usr[0]);
               }else if(req.isAuthenticated() && req.user[0].username != user.username){
                 //render just looking page
                 console.log('Just looking user followers',req.user[0].username,usr[0].followers,'username','boolean',(req.user[0].username in usr[0].followers));

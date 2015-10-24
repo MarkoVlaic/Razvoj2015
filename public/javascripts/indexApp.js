@@ -9,12 +9,14 @@ indexApp.controller('RegisterController',function($scope){
 		{type:'text',purpose:'firstname'},
 		{type:'text',purpose:'lastname'},
 		{type:'password',purpose:'password'},
-		{type:'password',purpose:'repeat password'},
+		{type:'password',purpose:'repeat_password'},
 		{type:'email',purpose:'email'},
 		],
 
 		'Company':[
-			{type:'text',purpose:'name'},
+			{type:'text',purpose:'username'},
+			{type:'password',purpose:'password'},
+			{type:'password',purpose:'repeat_password'},
 			{type:'email',purpose:'email'}
 		]
 
