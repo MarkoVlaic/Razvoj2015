@@ -1,0 +1,107 @@
+<html ng-app="OtherProfileApp">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+		<script type="text/javascript" src="javascripts/otherProfile.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="stylesheets/profile.css">
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+	    </script>
+		<title><%= username %></title>
+	</head>
+	<body>
+		<!-- Nav bar -->
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		  	<div class="collapse navbar-collapse">
+			<form class="navbar-form navbar-left" role="search">
+		        <div class="form-group">
+		          <input type="text" class="form-control" id="search" name="search" autocomplete="off"placeholder="Search">
+		          <div class="predict"><ul class="predict-items"></ul></div>
+		        </div>
+		        <button type="submit" class="btn btn-default" id="searchBtn">Search</button>
+		    </form>
+		    <form class="navbar-form navbar-right" action="/logout" method="post">
+		    	<button class="btn btn-default navbar-btn" type="submit">Log out</button>
+		    </form>
+		    <form class="navbar-form navbar-right">
+		    	<button class="btn btn-default navbar-btn" action="/<%=loggedInUser%>" method="get"><%=loggedInUser%></button>
+		    </form>
+		   </div>
+		</nav>
+		
+		<div class="username" value="<%=username
+		%>"></div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-1">
+					<h1><%=name%> <%=lastname%></h1>
+				</div><!-- col end -->
+				<div class="col-md-2">
+					<!-- TODO:Add unfollow functionallity -->
+					
+					<input type="submit" class="btn btn-default" id="follow" value="<%if(followed){%>unfollow<%}else{%>follow<%}%>">
+				</div><!-- col end -->
+			</div><!-- row end -->
+			<div class="row">
+				<h3>Age: <%= new Date().getFullYear() - birthYear %></h3>
+			</div><!-- Row end -->
+
+				<!--<h1 class="title">Favourites</h1>
+				<%if(favourites.length == 0){%>
+					<h3>No favourits yet</h3>
+				<%}%>
+				<% for (var i = 0; i < favourites.length; i++) { %>
+					<p><%=favourites[i].title%> </p>
+					<p><%=favourites[i].desc%> </p>
+					<p><%=favourites[i].author%> </p>
+					<p><%=favourites[i].source%> </p>
+					<h1>Comments</h1>
+					<% for (var i2 = 0; i2 < favourites[i].comments.length; i2++) { %>
+					<p><%=favourites[i].comments[i2].cauthor%> <%=favourites[i].comments[i2].comment%> </p>
+						
+					<% } %> 
+					
+					<form action="<%= favourites[i].url %>" method="post">
+				
+						<input type = 'text' name = <%=favourites[i].title%> text = 'Comment...'>
+						<input type = 'submit' value = 'Post'>
+
+					</form>
+
+				<% } %> -->
+				<h1 class="title">My tasks</h1>
+				<%if(usersTasks.length == 0){%>
+					<h3>No tasks yet</h3>
+				<%}%>
+				<% for (var i = usersTasks.length-1; i > -1; i--) { %>
+					<div class="task" id="<%= usersTasks[i].title %>">
+						<h2><%=usersTasks[i].title + ' -'%> <a href="/<%=username%>"><%=username%></a></h2>
+						<h4><%=usersTasks[i].date.getDate().toString() + '.' + usersTasks[i].date.getMonth().toString() + '.' + usersTasks[i].date.getFullYear().toString() + '.'
+						%></h4>
+						<h3><%=usersTasks[i].desc%> </h3>
+						<!--<h3><%=usersTasks[i].author%> </h3>-->
+						<!--<p><%=usersTasks[i].source%> </p>-->
+						<p>likes:<%=usersTasks[i].likes%></p>
+						<input type="submit" class="like btn btn-default" task="<%=usersTasks[i].title%>" value="<%if(usersTasks[i].liked){%> Dislike <%}else{%> Like <%}%>">
+						<!-- TODO:Add remove functionality -->
+						<input type="submit" class="add btn btn-default" task="<%=usersTasks[i].title%>" value="Add to list">
+
+						<h1>Comments</h1>
+						<%if(usersTasks[i].comments.length == 0){%>
+							<h4>This task has no comments yet</h4>
+						<%}%>
+						<% for (var i2 = 0; i2 < usersTasks[i].comments.length; i2++) { %>
+						<p><%=usersTasks[i].comments[i2].cauthor%> <%=usersTasks[i].comments[i2].comment%> </p>
+						<% } %> 
+					
+					</div>
+				<% } %> 
+		</div>
+
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js">
+		</script>
+		<script src="javascripts/buttons.js">
+		</script>
+
+	</body>
+</html>
