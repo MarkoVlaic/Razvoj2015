@@ -40,7 +40,7 @@
               
               <form action="/register" method="post">
                 <div ng-repeat="input in registerTemplates[userType]">
-                  <input type="{{input.type}}" name="{{input.purpose}}" placeholder="{{input.purpose.replace('_',' ')}}">
+                  <input type="{{input.type}}" name="{{input.purpose}}" required="true" placeholder="{{input.purpose.replace('_',' ')}}">
                 </div>
                 <!--<input type="text" name="username" required="true" placeholder="username">
                 <input type="text" name="firstname" required="true" placeholder="first name">

@@ -48,6 +48,7 @@ router.post('/register',function(req,res){
 			following:[],
 			followers:[],
 			liked:[],
+			employees:[]
 			});
 		
 		newUser.save(function(err,userSaved){

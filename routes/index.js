@@ -19,7 +19,7 @@ router.get('/',function(req, res) {
           router.get('/' + user.username,function(req,res){
             mongoose.model('users').find({username:user.username},function(err,usr){
               if(err) throw err;
-
+              usr[0].userType = req.user[0].type;
               if(req.isAuthenticated() && req.user[0].username == user.username){
                 //render logged in page
                 console.log('Loggedd in');

@@ -28,22 +28,27 @@
 		    </form>
 		   </div>
 		</nav>
-		
 		<div class="username" value="<%=username
 		%>"></div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-1">
-					<h1><%=name%> <%=lastname%></h1>
+					<!--<h1><%=name%> <%=lastname%></h1>-->
+					<h1><%=username%></h1>
 				</div><!-- col end -->
 				<div class="col-md-2">
 					<!-- TODO:Add unfollow functionallity -->
 					
-					<input type="submit" class="btn btn-default" id="follow" value="<%if(followed){%>unfollow<%}else{%>follow<%}%>">
+					<input type="submit" class="btn btn-default" id="follow" value="<%if(followed){%>Unfollow<%}else{%>Follow<%}%>">
+					<% if(userType=="Company"){ %>
+					<input type="submit" class="btn btn-default"id="addEmployee" value="Add employee">
+					<%}%>
 				</div><!-- col end -->
 			</div><!-- row end -->
 			<div class="row">
-				<h3>Age: <%= new Date().getFullYear() - birthYear %></h3>
+				<div class="col-md-5">
+					<h3>Age: <%= new Date().getFullYear() - birthYear %></h3>
+				</div>
 			</div><!-- Row end -->
 
 				<!--<h1 class="title">Favourites</h1>
