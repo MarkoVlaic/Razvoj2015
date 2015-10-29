@@ -1,1 +1,14 @@
-<h2>About us</h2>
+<div ng-controller="AboutUsController">
+	<form>
+		<div class="about" ng-repeat="info in informations" style="margin-top:3px">
+			<label>{{info.label}}</label>
+			<!-- <input enabled="false" ng-disabled="info.disabled" class="form-control" type="{{info.type}}" value="{{info.value}}"> -->
+			<p ng-show="!info.edit">
+				{{info.value}}
+			</p>
+			<textarea class="form-control" ng-show="info.edit">{{info.value}}</textarea>
+			<input type="checkbox" ng-model="info.edit">
+			<label>Edit</label>
+		</div> 
+	</form>
+</div>
