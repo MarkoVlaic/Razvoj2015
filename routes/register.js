@@ -30,7 +30,7 @@ router.post('/register',function(req,res){
 			res.redirect('/');
 			return false;
 		}
-
+		console.log('register type',req.body.userType);
 		//TODO: Add email functionality
 		var newUser = new User({
 			username:req.body.username,

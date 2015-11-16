@@ -23,6 +23,7 @@ router.get('/',function(req, res) {
               if(req.isAuthenticated() && req.user[0].username == user.username){
                 //render logged in page
                 console.log('Loggedd in');
+                console.log('User type',req.user[0].type);
                 res.render(req.user[0].type + 'Profile',usr[0]);
               }else if(req.isAuthenticated() && req.user[0].username != user.username){
                 //render just looking page
@@ -54,7 +55,7 @@ router.get('/',function(req, res) {
           });
     });
     if(!req.isAuthenticated()){
-   		res.render('index',{
+   		res.render('newIndex',{
         title:'Razvoj softvera 2015',
         message:process.env.message,
         registerMessage:process.env.registerMessage

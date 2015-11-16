@@ -27,7 +27,7 @@
 		    	<button class="btn btn-default navbar-btn" action="/<%=loggedInUser%>" method="get"><%=loggedInUser%></button>
 		    </form>
 		   </div>
-		</nav>
+		</nav><!-- Nav end -->
 		<div class="username" value="<%=username
 		%>"></div>
 		<div class="container-fluid">
@@ -74,6 +74,8 @@
 					</form>
 
 				<% } %> -->
+				<div ng-controller="tasksController">
+					{{userSolved}}
 				<h1 class="title">My tasks</h1>
 				<%if(usersTasks.length == 0){%>
 					<h3>No tasks yet</h3>
@@ -89,7 +91,7 @@
 						<p>likes:<%=usersTasks[i].likes%></p>
 						<input type="submit" class="like btn btn-default" task="<%=usersTasks[i].title%>" value="<%if(usersTasks[i].liked){%> Dislike <%}else{%> Like <%}%>">
 						<!-- TODO:Add remove functionality -->
-						<input type="submit" class="add btn btn-default" task="<%=usersTasks[i].title%>" value="Add to list">
+						<!-- <input ng-show="(<%=usersTasks.title%> in userSolved) == false" type="submit" class="add btn btn-default" task="<%=usersTasks[i].title%>" value="Add to list"> -->
 
 						<h1>Comments</h1>
 						<%if(usersTasks[i].comments.length == 0){%>
@@ -101,7 +103,9 @@
 					
 					</div>
 				<% } %> 
-		</div>
+
+				</div>
+		</div><!-- Container end -->
 
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js">
 		</script>
