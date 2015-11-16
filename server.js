@@ -47,7 +47,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //connect to the database
-dev = true;
+dev = false;
 if(!dev){
 	console.log('Not in dev');
 	var conn = mongoose.connect('mongodb://osak:MaPa2015!@ds059722.mongolab.com:59722/osak',function(){
