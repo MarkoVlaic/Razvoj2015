@@ -1,0 +1,42 @@
+/*h1{
+	font-size: 30px;
+}*/
+
+h1{
+
+font-size: 40px;
+color:#66afff;
+}
+
+#title{
+	margin-top : 50px;
+}
+
+#caution{
+	color:#ff4d4d;
+}
+
+#log-in{
+	margin-left:20px;
+}
+
+#desc{
+	margin-right: 50px;
+	/*font-size:25px;*/
+	/*padding-bottom: 50px;*/
+	padding-bottom:50px;
+	border-bottom:2px solid #ccc;
+}
+
+.navbar-brand{
+	font-size: 30px;
+}
+
+#users{
+	
+}
+
+#register{
+	padding-bottom: 1px;
+	border-bottom: 2px solid #ccc;
+}

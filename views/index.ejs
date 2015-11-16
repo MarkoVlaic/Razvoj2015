@@ -42,36 +42,25 @@
                 <div ng-repeat="input in registerTemplates[userType]">
                   <input  class="form-control"  type="{{input.type}}" name="{{input.purpose}}" required="true" placeholder="{{input.purpose.replace('_',' ')}}" style="margin-bottom:2px">
                 </div>
-                <!--<input type="text" name="username" required="true" placeholder="username">
-                <input type="text" name="firstname" required="true" placeholder="first name">
-                <input type="text" name="lastname" required="true" placeholder="last name">
-                <input type="password" name="password" required="true" placeholder="password">
-                <input type="password" name="repeat_password" required="true"placeholder="repeat password">
-                <input type="email" name="email" required="true" placeholder="e-mail">
-                <div class="row">
-                  <div class="col-md-12">
-                    <label>Your birth date</label>
-                    <!--<input type="number" name="day" required="true" placeholder="day" min="1" max="31">
-                    <input type="number" name="month" required="true" placeholder="month" min="1" max="12">
-                    <input type="number" name="year" required="true" min="1930" placeholder="year">-->
-                    <div id="timeStuff" ng-show="userType!='Company'">
-                       <select name="day" >
-                      <%for(var i=1;i<32;i++){%>
-                        <option><%=i%></option>
-                      <%}%>
-                    </select>
-                    <select name="month">
-                      <%for(var i=1;i < 13;i++){%>
-                      <option><%=i%></option>
-                      <%}%>
-                    </select>
-                    <select name="year">
-                      <%for(var i=new Date().getFullYear();i > new Date().getFullYear() - 71;i--){%>
-                        <option><%=i%></option>
-                      <%}%>
-                    </select>
-                    </div>
-                    
+          
+                <div id="timeStuff" ng-show="userType!='Company'">
+                   <select name="day" >
+                  <%for(var i=1;i<32;i++){%>
+                    <option><%=i%></option>
+                  <%}%>
+                </select>
+                <select name="month">
+                  <%for(var i=1;i < 13;i++){%>
+                  <option><%=i%></option>
+                  <%}%>
+                </select>
+                <select name="year">
+                  <%for(var i=new Date().getFullYear();i > new Date().getFullYear() - 71;i--){%>
+                    <option><%=i%></option>
+                  <%}%>
+                </select>
+                </div>
+                
                   </div>
                 </div><!-- Row end -->
                 <div class="row">

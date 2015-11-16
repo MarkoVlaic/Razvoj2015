@@ -51,4 +51,9 @@ mongoose.model('users').find(function(err,users){
 		});
 	});
 });
+
+router.get('/getUserSolved',function(req,res){
+	res.send(req.user[0].solved);
+});
+
 module.exports = router;
