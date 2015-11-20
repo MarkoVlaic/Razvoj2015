@@ -40,6 +40,7 @@ router.post('/addTask',function(req,res){
 router.get('/getUsersTasks',function(req,res){
 	mongoose.model('users').findOne({username:req.user[0].username},function(err,user){
 		if(err) throw err;
+		console.log('I sent this');
 		res.send(user.usersTasks);
 	});
 });
@@ -59,5 +60,30 @@ router.get('/getSolutions',function(req,res){
 		res.send(user.solved);
 	});
 });
+
+router.get('/removeTask/:title',function(req,res){
+	// res.redirect('/');
+	// console.log('I found',findTask(req.params.task,req.user[0].tasks));
+	// res.send(findTask(req.params.task,req.user[0].usersTasks));
+	var curTask = null;
+	req.user[0].usersTasks.forEach(function(t){
+		if(t.title == req.params.title){
+			curTask = t;
+			return;
+		}
+	});
+	req.user[0].usersTasks.splice(req.user[0].usersTasks.indexOf(curTask),1);
+	var condition = {username:req.user[0].username};
+	var update = {$set:{usersTasks:req.user[0].usersTasks}};
+	var options = {multi:false};
+
+	mongoose.model('users').update(condition,update,options,function(err,numUpdated){
+		if(err) throw err;
+		console.log('Tasks updated');
+		res.redirect('/');
+	});
+});
+
+
 
 module.exports = router;

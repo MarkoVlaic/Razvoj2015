@@ -55,6 +55,7 @@ profileApp.controller("SolutionsController",function($scope,$http){
 
 profileApp.controller('MyTasksController',function($scope,$http){
 	$http.get('/getUsersTasks').success(function(data){
+		console.log('Data',data);
 		$scope.usersTasks = data.reverse();	
 	});
 

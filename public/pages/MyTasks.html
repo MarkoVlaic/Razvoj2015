@@ -1,42 +1,39 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title></title>
-	</head>
-	<body>
-		<div ng-controller="MyTasksController">
-			
-			<div ng-show="usersTasks.length == 0">
-				<h4>No tasks yet</h4> 
-			</div>
 
-			<div class="task" ng-repeat="task in usersTasks" id="{{task.title}}">
-
+<div ng-controller="MyTasksController">
+	
+	<div ng-show="usersTasks.length == 0">
+		<h4>No tasks yet</h4> 
+	</div>
+		<div class="task" ng-repeat="task in usersTasks" id="{{task.title}}">
+		<div class="row">
+			<div class="col-sm-11 col-md-11 col-lg-11">
 			<h2>{{task.title + ' -'}} <a href="/{{task.author}}">{{task.author}}</a></h2>
 
 			<h4>{{task.date|date:'medium'}}</h4>
 
 			<h3>{{task.desc}} </h3>
-
-
-
-			</div>			
-
-			<!--<%if(usersTasks.length == 0){%>
-					<h3>No tasks yet</h3>
-				<%}%>
-				<% for (var i = usersTasks.length-1; i > -1; i--) { %>
-					<div class="task" id="<%= usersTasks[i].title %>">
-					
-						<!--<h3><%=usersTasks[i].author%> </h3>-->
-						<!--<p><%=usersTasks[i].source%> </p>-->
-							<!--<h1>Comments</h1>
-							<% for (var i2 = 0; i2 < usersTasks[i].comments.length; i2++) { %>
-							<p><%=usersTasks[i].comments[i2].cauthor%> <%=usersTasks[i].comments[i2].comment%> </p>
-							<% } %> 
-						
-					</div>
-				<% } %> -->
 		</div>
-	</body>
-</html>
+
+		<div class="col-sm-1 col-md-1 col-lg-1">
+			<a href="/removeTask/{{task.title}}">Remove</a>
+		</div>
+		</div>
+		
+	</div>	
+		
+
+	<!--<%if(usersTasks.length == 0){%>
+			<h3>No tasks yet</h3s		<%}%>
+		<% for (var i = usersTasks.length-1; i > -1; i--) { %>
+			<div class="task" id="<%= usersTasks[i].title %>">
+			
+				<!--<h3><%=usersTasks[i].author%> </h3>-->
+				<!--<p><%=usersTasks[i].source%> </p>-->
+					<!--<h1>Comments</h1>
+					<% for (var i2 = 0; i2 < usersTasks[i].comments.length; i2++) { %>
+					<p><%=usersTasks[i].comments[i2].cauthor%> <%=usersTasks[i].comments[i2].comment%> </p>
+					<% } %> 
+				
+			</div>
+		<% } %> -->
+</div>
