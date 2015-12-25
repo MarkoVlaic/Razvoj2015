@@ -63,7 +63,8 @@ router.get('/',function(req, res) {
       process.env.message = '';
       process.env.registerMessage = '';
     }else{
-      res.redirect('/'+req.user[0].username);
+      // res.redirect('/'+req.user[0].username);
+      res.redirect('/homepage');
     }
 });
 }); 
