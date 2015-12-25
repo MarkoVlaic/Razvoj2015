@@ -1,6 +1,7 @@
 <html ng-app="ProfileApp">
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+		<script src="javascripts/sanitize.js"></script>
 		<script type="text/javascript" src="javascripts/profile.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="stylesheets/profile.css">
@@ -12,6 +13,7 @@
 	    <title><%= username %></title>
 	</head>
 	<body>
+		<input type="hidden" id="username" value="<%= username %>" />
 		<!-- Nav bar -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 		  <div class="container-fluid">
@@ -31,7 +33,7 @@
 		   </div>
 		  	</div>
 			
-		</nav>
+		</nav><!-- Nav end -->
 
 		<div class="container-fluid">
 			<div class="row" style="margin-bottom:3px;">

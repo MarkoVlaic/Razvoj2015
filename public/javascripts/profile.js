@@ -1,4 +1,4 @@
-var profileApp = angular.module("ProfileApp",[]);
+var profileApp = angular.module("ProfileApp",['ngSanitize']);
 
 profileApp.factory('tasksToSolve',function(){
 	var tasksToSolve = [];
@@ -25,15 +25,17 @@ profileApp.controller("MenuController",function($scope,tasksToSolve){
 });
 
 profileApp.controller("UploadController",function($scope,$http){
-	$http.get('/getTasksToSolve').success(function(data){
-		$scope.tasksToSolve = data;
-		console.log('data',data);
+	var username = document.getElementById('username').value;
+	$http.post('/getUserObject',{username:username}).success(function(data){
+		$scope.tasksToSolve = data.tasksToSolve;
+		console.log('data',data.tasksToSolve);
 	});
 });
 
 profileApp.controller("SolutionsController",function($scope,$http){
-	$http.get('/getSolutions').success(function(data){
-		$scope.solutions = data;
+	var username = document.getElementById('username').value;
+	$http.post('/getUserObject',{username}).success(function(data){
+		$scope.solutions = data.solved;
 	});
 
 	$scope.indexFunction = function(l,i){
@@ -53,10 +55,27 @@ profileApp.controller("SolutionsController",function($scope,$http){
 
 });
 
-profileApp.controller('MyTasksController',function($scope,$http){
-	$http.get('/getUsersTasks').success(function(data){
-		console.log('Data',data);
-		$scope.usersTasks = data.reverse();	
+profileApp.controller('MyTasksController',function($scope,$http,$sce){
+	var username = document.getElementById('username').value;
+	console.log('username',username);
+	$scope.authenticated = false;
+	$http.post('/getUserObject',{username:'req'}).success(function(data){
+		console.log('data.username',data.username);
+		if(data.username == username){
+			$scope.authenticated = true;
+		}
+	});
+	$http.post('/getUserObject',{username:username}).success(function(data){
+		console.log('Data',data.usersTasks);
+		$scope.usersTasks = data.usersTasks.reverse();
+		/*htmlDesc = [];
+		angular.forEach($scope.usersTasks,function(value){
+			var newValue = '<h3>' + value + '</h3>'
+			this.push({value:newValue});
+		},htmlDesc);
+		$scope.htmlDesc = htmlDesc;
+		console.log('Html desc',htmlDesc);*/
+		$scope.htmlDesc = '<h3>I should be desc</h3>'
 	});
 
 });

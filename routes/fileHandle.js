@@ -30,7 +30,12 @@ router.post('/preview',function(req,res){
 
 router.post('/download',function(req,res){
 	var readStream = gfs.createReadStream({filename:req.query.name})
-	res.download(readStream);
+	// res.download(readStream);
+	console.log('Download called');
+	res.download('images/picture.png','picture',function(err){
+		if(err) throw err;
+		console.log('download complete');
+	});
 });
 
 module.exports = router;

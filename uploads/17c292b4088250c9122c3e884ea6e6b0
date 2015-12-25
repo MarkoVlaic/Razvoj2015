@@ -1,0 +1,45 @@
+def toBase(n,b):
+  res = ''
+  p = 0
+  i = 0
+  while i < n:
+    #print('i in while',i)
+    p += 1
+    i = b**p
+  while i > 0:
+    p -= 1
+    i -= b**p
+    print('p',p,'i',i)
+    print('n',n)
+    t = '0'
+    for x in range(1,b):
+        if n > x*i:
+          t = str(x)
+        else:
+          break
+    print('t',t)
+    n -= int(t) * i
+    res += t
+
+  return res
+
+def reverseString(s):
+    res = ''
+    l = len(s)-1
+    for i in range(len(s)):
+        res += s[l]
+        l -= 1
+    return res
+
+def toDecimal(l):
+    res = 0
+    n = ''
+    for i in l:
+        n += str(i)
+    n = reverseString(n)
+    for i in range(len(n)):
+        res += int(n[i]) * 2**i
+    return res
+
+res = toBase(3,2)
+print('res',res,'to decimal',toDecimal(res))

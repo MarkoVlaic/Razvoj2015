@@ -1,7 +1,8 @@
-<html ng-app="OtherProfileApp">
+<html ng-app="ProfileApp">
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-		<script type="text/javascript" src="javascripts/otherProfile.js"></script>
+		<script src="javascripts/sanitize.js"></script>
+		<script type="text/javascript" src="javascripts/profile.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="stylesheets/profile.css">
 	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
@@ -28,15 +29,20 @@
 		    </form>
 		   </div>
 		</nav><!-- Nav end -->
-		<div class="username" value="<%=username
-		%>"></div>
+
+		<input type="hidden" id="username" value="<%=username%>"/>
+
 		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-1">
-					<!--<h1><%=name%> <%=lastname%></h1>-->
-					<h1><%=username%></h1>
+			<div class="row" style="margin-bottom:3px;">
+				<div class="col-sm-3 col-md-2 col-lg-1
+				">
+					<img id="profilePic" src="images/noUser1.jpg">
+				</div>
+				<div class="col-xs-5 col-sm-5 col-md-2 col-lg-2">
+					<h1><%=name%> <%=lastname%></h1>
 				</div><!-- col end -->
-				<div class="col-md-2">
+			
+				<div class="col-sm-2 col-md-2 col-lg-2">
 					<!-- TODO:Add unfollow functionallity -->
 					
 					<input type="submit" class="btn btn-default" id="follow" value="<%if(followed){%>Unfollow<%}else{%>Follow<%}%>">
@@ -45,66 +51,42 @@
 					<%}%>
 				</div><!-- col end -->
 			</div><!-- row end -->
-			<div class="row">
-				<div class="col-md-5">
-					<h3>Age: <%= new Date().getFullYear() - birthYear %></h3>
+
+			<div ng-init="activeTab='MyTasks'" ng-controller="MenuController">
+				<ul class="nav nav-tabs">
+
+					<li ng-class="{active: activeTab == 'MyTasks'}">
+						<a href ng-click="activeTab = 'MyTasks'">My tasks
+						</a>
+					</li>
+
+					<!--<li ng-class="{active: activeTab == 'Favourites'}">
+						<a href ng-click="activeTab = 'Favourites'">Favourites
+						</a>
+					</li>-->
+
+					<li ng-class="{active: activeTab == 'ViewSolutions'}">
+						<a href ng-click="activeTab = 'ViewSolutions';
+						">View solutions</a>
+					</li>
+
+				</ul><!-- Menu end-->
+				<div class="menu-content">
+					<div
+						ng-show="activeTab == 'MyTasks'"
+						ng-include="'pages/MyTasks.html'"
+					></div>
+					<div
+						ng-show="activeTab == 'Favourites'"
+						ng-include="'pages/Favourites.html'"
+					></div>
+					<div
+						ng-show="activeTab == 'ViewSolutions'"
+						ng-include="'pages/ViewSolutions.html'"
+					></div>
 				</div>
-			</div><!-- Row end -->
+			</div>
 
-				<!--<h1 class="title">Favourites</h1>
-				<%if(favourites.length == 0){%>
-					<h3>No favourits yet</h3>
-				<%}%>
-				<% for (var i = 0; i < favourites.length; i++) { %>
-					<p><%=favourites[i].title%> </p>
-					<p><%=favourites[i].desc%> </p>
-					<p><%=favourites[i].author%> </p>
-					<p><%=favourites[i].source%> </p>
-					<h1>Comments</h1>
-					<% for (var i2 = 0; i2 < favourites[i].comments.length; i2++) { %>
-					<p><%=favourites[i].comments[i2].cauthor%> <%=favourites[i].comments[i2].comment%> </p>
-						
-					<% } %> 
-					
-					<form action="<%= favourites[i].url %>" method="post">
-				
-						<input type = 'text' name = <%=favourites[i].title%> text = 'Comment...'>
-						<input type = 'submit' value = 'Post'>
-
-					</form>
-
-				<% } %> -->
-				<div ng-controller="tasksController">
-					{{userSolved}}
-				<h1 class="title">My tasks</h1>
-				<%if(usersTasks.length == 0){%>
-					<h3>No tasks yet</h3>
-				<%}%>
-				<% for (var i = usersTasks.length-1; i > -1; i--) { %>
-					<div class="task" id="<%= usersTasks[i].title %>">
-						<h2><%=usersTasks[i].title + ' -'%> <a href="/<%=username%>"><%=username%></a></h2>
-						<h4><%=usersTasks[i].date.getDate().toString() + '.' + usersTasks[i].date.getMonth().toString() + '.' + usersTasks[i].date.getFullYear().toString() + '.'
-						%></h4>
-						<h3><%=usersTasks[i].desc%> </h3>
-						<!--<h3><%=usersTasks[i].author%> </h3>-->
-						<!--<p><%=usersTasks[i].source%> </p>-->
-						<p>likes:<%=usersTasks[i].likes%></p>
-						<input type="submit" class="like btn btn-default" task="<%=usersTasks[i].title%>" value="<%if(usersTasks[i].liked){%> Dislike <%}else{%> Like <%}%>">
-						<!-- TODO:Add remove functionality -->
-						<!-- <input ng-show="(<%=usersTasks.title%> in userSolved) == false" type="submit" class="add btn btn-default" task="<%=usersTasks[i].title%>" value="Add to list"> -->
-
-						<h1>Comments</h1>
-						<%if(usersTasks[i].comments.length == 0){%>
-							<h4>This task has no comments yet</h4>
-						<%}%>
-						<% for (var i2 = 0; i2 < usersTasks[i].comments.length; i2++) { %>
-						<p><%=usersTasks[i].comments[i2].cauthor%> <%=usersTasks[i].comments[i2].comment%> </p>
-						<% } %> 
-					
-					</div>
-				<% } %> 
-
-				</div>
 		</div><!-- Container end -->
 
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js">

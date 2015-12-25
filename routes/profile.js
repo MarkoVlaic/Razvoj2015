@@ -52,8 +52,14 @@ mongoose.model('users').find(function(err,users){
 	});
 });
 
-router.get('/getUserSolved',function(req,res){
-	res.send(req.user[0].solved);
+router.post('/getUserObject',function(req,res){
+	console.log('I need to get this user',req.body.username);
+	if(req.body.username == 'req'){
+		req.body.username = req.user[0].username;
+	}
+	mongoose.model('users').findOne({username:req.body.username},function(err,user){
+		res.send(user);
+	});
 });
 
 module.exports = router;

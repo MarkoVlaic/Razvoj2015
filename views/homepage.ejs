@@ -5,15 +5,19 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/profile.css">
 	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
 	    </script>
+	    <script src="javascripts/homepage.js"></script>
 
 		<title>Homepage</title>
 	</head>
-	<body>
-		This is homepage
-		<% for(var i=0;i<tasks.length;i++){ %>
-			<div class="task">
-				<h1><%= tasks[i].title %></h1>
-			</div>
-		<%}%>
+	<body ng-controller="NewsController">
+		<div class="task" ng-repeat="feed in news">	
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-12">
+					<h2>{{feed.title + ' -'}} <a href="/{{feed.author}}">{{feed.author}}</a></h2>
+					<h4>{{task.date|date:'medium'}}</h4>
+					<h3>{{task.desc}} </h3>
+				</div>
+			</div>  
+		</div>
 	</body>
 </html>

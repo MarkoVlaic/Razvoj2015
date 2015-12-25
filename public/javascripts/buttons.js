@@ -27,7 +27,8 @@ $(function(){
 
 	$('.add').on('click',function(){
 		// alert($(this).attr('task'));
-		var parameters = {username:$('.username').attr('value'),task:$(this).attr('task')};
+		var parameters = {username:$('#username').attr('value'),task:$(this).attr('task')};
+		console.log('Params',parameters);
 		$.post('/addTaskToSolve',parameters);
 		console.log('tsnjias',$(this).attr('value'));
 		if($(this).attr('value') == 'Add to list'){

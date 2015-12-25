@@ -11,11 +11,15 @@
 
 			<h4>{{task.date|date:'medium'}}</h4>
 
-			<h3>{{task.desc}} </h3>
+			<!-- <h3>{{desc}}</h3> -->
+			<div ng-bind-html="'<h3>'+task.desc+'</h3>'"></div>
 		</div>
 
-		<div class="col-sm-1 col-md-1 col-lg-1">
+		<div ng-show="authenticated == true" class="col-sm-1 col-md-1 col-lg-1">
 			<a href="/removeTask/{{task.title}}">Remove</a>
+		</div>
+		<div ng-show="authenticated == false">
+			<form action="" method="post"></form>
 		</div>
 		</div>
 		

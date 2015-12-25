@@ -8,6 +8,7 @@ console.log('taskSchema',taskSchema);
 var Task = mongoose.model('tasks',taskSchema);
 
 router.post('/addTask',function(req,res){
+	req.body.desc = req.body.desc.replace(/\r?\n/g, '<br />');
 	var newTask = new Task({
 		title:req.body.title,
 		desc:req.body.desc,
@@ -80,7 +81,7 @@ router.get('/removeTask/:title',function(req,res){
 	mongoose.model('users').update(condition,update,options,function(err,numUpdated){
 		if(err) throw err;
 		console.log('Tasks updated');
-		res.redirect('/');
+		res.redirect('/'+req.user[0].username);
 	});
 });
 

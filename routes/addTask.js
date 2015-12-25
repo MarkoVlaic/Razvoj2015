@@ -4,6 +4,8 @@ var router = express.Router();
 var mongoose = require('mongoose');
 
 router.post('/addTaskToSolve',function(req,res){
+	// console.log('Req object in adding',req);
+	// console.log('Author',req.body.username,'Task'.req.body.task);
 	mongoose.model('tasks').find({author:req.body.username,title:req.body.task},
 		function(err,task){
 			if(err) throw err;

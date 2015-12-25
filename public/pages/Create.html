@@ -2,15 +2,28 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="stylesheets/createFile.css">
 	</head>
 	<body>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-1">
+				<div class="col-md-12">
 					<form action="/addTask" method="post" id="addTask" style="padding-top:2px">
-						<input type="text" name="title" placeholder="title">
-						<input type="text" name="desc" placeholder="desciption">
-						<input type="submit" class="btn btn-default" value="Create">
+						<div class="row">
+							<div class="col-md-1 col-md-push-4">
+								<input type="text" name="title" id="title" placeholder="Title" required="true" autocomplete="off">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-1 col-md-push-3">
+								<textarea name="desc" id="desc" placeholder="Description" required="true"></textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-1 col-md-push-9">
+								<input type="submit" class="btn btn-default" value="Create">
+							</div>
+						</div>
 					</form>	
 				</div><!-- col end -->
 			</div><!-- row end -->

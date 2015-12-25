@@ -1,0 +1,15 @@
+seq = list(map(int,input().split()))
+
+sol = 0
+ls = [0]
+
+for n in seq:
+  if n >= ls[len(ls)-1]:
+    ls.append(n)
+    if len(ls)-1 > sol:
+      sol = len(ls)-1
+  else:
+    ls = [0,n]
+  print('n',n,'ls',ls,'sol',sol)
+
+print(sol)

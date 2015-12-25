@@ -31,12 +31,12 @@ router.post('/uploadTask',upload.array('fileUpload',limit),function(req,res){
 	req.files.forEach(function(file){
 		// fs.unlink(file.path,function(err){
 			// if(err) throw err;
-		var saveString = 'Title-' + req.body.info.split(' ')[0] + '-Filename-' + file.originalname + '-User-' + req.user[0].username;
+		var saveString = 'Title-' + req.body.info.split('-')[0] + '-Filename-' + file.originalname + '-User-' + req.user[0].username;
 		var writeStream = gfs.createWriteStream({filename:saveString});
 		fs.createReadStream(file.path).on('end',function(){
 			// Handle list of tasks to solve
 			console.log('Before',req.user[0].tasksToSolve);
-			req.user[0].tasksToSolve = removeObjectFromList(req.user[0].tasksToSolve,['title','author'],[req.body.info.split(' ')[0],req.body.info.split(' ')[1]]);
+			req.user[0].tasksToSolve = removeObjectFromList(req.user[0].tasksToSolve,['title','author'],[req.body.info.split('-')[0],req.body.info.split('-')[1]]);
 			req.user[0].solved.push(saveString);
 			console.log('After',req.user[0].tasksToSolve);
 			

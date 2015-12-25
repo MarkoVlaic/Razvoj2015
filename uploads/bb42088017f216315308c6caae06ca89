@@ -1,0 +1,19 @@
+input()
+
+n = map(int,input().split())
+m = map(int,input().split())
+
+pos = 0
+#track = 0 - truck track; track = 1 - speed track;
+track = 0
+speed = 0
+
+while len(n) > 0:
+    if track == 0:
+        speed = 1
+    else:
+        speed = 2
+
+    
+
+    
