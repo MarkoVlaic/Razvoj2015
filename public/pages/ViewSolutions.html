@@ -12,11 +12,12 @@
 					</div>
 					<div class="fileWrapper" style="">
 						<div class="file" ng-repeat="solution in solutions" id="{{solution}}">
-							<button class="btn btn-info btn-file btn-preview" id="{{solved}}" style="position:relative" ng-click="previewFile()">Preview</button>
+
+						<h3 id="{{indexFunction(solutions,solution)}}">{{splitFunction(solution,'-')[1] + ' - ' + splitFunction(solution,'-')[3]}}</h3>
+
+							<button class="btn btn-info btn-file btn-preview" id="{{solution}}" style="position:relative" ng-click="previewFile(solution)">Preview</button>
 
 							<button class="btn btn-primary btn-file btn-download" id="{{solution}}" style="position:relative">Download</button>
-
-							<h3 id="{{indexFunction(solutions,solution)}}">{{splitFunction(solution,'-')[1] + '-' + splitFunction(solution,'-')[3]}}</h3>
 
 							<p>
 								{{preview}}

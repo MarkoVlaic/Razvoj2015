@@ -27,6 +27,7 @@ $(function(){
 
 	$('.add').on('click',function(){
 		// alert($(this).attr('task'));
+		alert('Click');
 		var parameters = {username:$('#username').attr('value'),task:$(this).attr('task')};
 		console.log('Params',parameters);
 		$.post('/addTaskToSolve',parameters);

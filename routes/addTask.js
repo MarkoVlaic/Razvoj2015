@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 router.post('/addTaskToSolve',function(req,res){
 	// console.log('Req object in adding',req);
 	// console.log('Author',req.body.username,'Task'.req.body.task);
-	mongoose.model('tasks').find({author:req.body.username,title:req.body.task},
+	mongoose.model('tasks').find({author:req.body.author,title:req.body.title},
 		function(err,task){
 			if(err) throw err;
 			console.log('task we get iiiis',task);
@@ -37,10 +37,11 @@ router.post('/addTaskToSolve',function(req,res){
 			mongoose.model('users').update(condition,update,options,function(err,updated){
 				if(err) throw err;
 				console.log('User updated');
+				// res.redirect('/'+req.body.author);
 			});
 
 		});
-	res.send("You tried to add me to list but you failed madafaka");
+	
 });
 
 function createArray(a,key)

@@ -18,10 +18,18 @@ profileApp.factory('tasksToSolve',function(){
 
 });
 
-profileApp.controller("MenuController",function($scope,tasksToSolve){
+profileApp.controller("MenuController",function($scope,$http){
 	// $scope.activeTab = "Create";
 	// $scope.setTasksToSolve = tasksToSolve.setTasksToSolve;
 	// $scope.tasks = tasksToSolve.getTasksToSolve;
+	var username = document.getElementById('username').value;
+	var authenticated = false;
+	$http.post('/getUserObject',{username:'req'}).success(function(data){
+		console.log('data.username',data.username);
+		if(data.username == username){
+			$scope.authenticated = true;
+		}
+	});
 });
 
 profileApp.controller("UploadController",function($scope,$http){
@@ -48,34 +56,43 @@ profileApp.controller("SolutionsController",function($scope,$http){
 	}
 
 	$scope.previewFile = function(id){
+		console.log('Should preview file',id);
 		$http.post('/preview',{name:id}).success(function(data){
 			$scope.file = data;
+			console.log('Data I get is',data);
 		});
 	};
 
 });
 
-profileApp.controller('MyTasksController',function($scope,$http,$sce){
+profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
 	var username = document.getElementById('username').value;
 	console.log('username',username);
 	$scope.authenticated = false;
+	$scope.solveList = [];
+	
 	$http.post('/getUserObject',{username:'req'}).success(function(data){
 		console.log('data.username',data.username);
 		if(data.username == username){
 			$scope.authenticated = true;
 		}
+		for (var i = 0; i < data.tasksToSolve.length; i++) {
+			$scope.solveList.push(data.tasksToSolve[i].title + data.tasksToSolve[i].author);
+		};
+		console.log('Solve list',$scope.solveList);
 	});
+	
 	$http.post('/getUserObject',{username:username}).success(function(data){
 		console.log('Data',data.usersTasks);
 		$scope.usersTasks = data.usersTasks.reverse();
-		/*htmlDesc = [];
-		angular.forEach($scope.usersTasks,function(value){
-			var newValue = '<h3>' + value + '</h3>'
-			this.push({value:newValue});
-		},htmlDesc);
-		$scope.htmlDesc = htmlDesc;
-		console.log('Html desc',htmlDesc);*/
-		$scope.htmlDesc = '<h3>I should be desc</h3>'
 	});
+
+	$scope.addTask = function(task){
+		var parameters = {title:task.title,author:task.author};
+		console.log('These are the parameters',parameters);
+		$http.post('/addTaskToSolve',parameters).success(function(data){
+			$window.location.reload();
+		});
+	}
 
 });

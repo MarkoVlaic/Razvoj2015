@@ -20,36 +20,44 @@ router.get('/',function(req, res) {
             mongoose.model('users').find({username:user.username},function(err,usr){
               if(err) throw err;
               usr[0].userType = req.user[0].type;
-              if(req.isAuthenticated() && req.user[0].username == user.username){
-                //render logged in page
-                console.log('Loggedd in');
-                console.log('User type',req.user[0].type);
-                res.render(req.user[0].type + 'Profile',usr[0]);
-              }else if(req.isAuthenticated() && req.user[0].username != user.username){
-                //render just looking page
-                console.log('Just looking user followers',req.user[0].username,usr[0].followers,'username','boolean',(req.user[0].username in usr[0].followers));
-                if(usr[0].followers.indexOf(req.user[0].username) >= 0){
-                  console.log('Followed');
-                  usr[0].followed = true;
-                }else{
-                  console.log('Not followed');
-                  usr[0].followed = false;
-                }
-                for (var i = 0; i < usr[0].usersTasks.length; i++) {
-                  if(req.user[0].liked.indexOf(usr[0].usersTasks[i]) >= 0){
-                    console.log('LIKED');
-                    usr[0].usersTasks[i].liked = true;
-                  }else{
-                    console.log('NO LIKED');
-                    usr[0].usersTasks[i].liked = false;
-                  }
-                }
+              // if(req.isAuthenticated() && req.user[0].username == user.username){
+              //   //render logged in page
+              //   console.log('Loggedd in');
+              //   console.log('User type',req.user[0].type);
+              //   res.render(req.user[0].type + 'Profile',usr[0]);
+              // }else if(req.isAuthenticated() && req.user[0].username != user.username){
+              //   //render just looking page
+              //   console.log('Just looking user followers',req.user[0].username,usr[0].followers,'username','boolean',(req.user[0].username in usr[0].followers));
+              //   if(usr[0].followers.indexOf(req.user[0].username) >= 0){
+              //     console.log('Followed');
+              //     usr[0].followed = true;
+              //   }else{
+              //     console.log('Not followed');
+              //     usr[0].followed = false;
+              //   }
+              //   for (var i = 0; i < usr[0].usersTasks.length; i++) {
+              //     if(req.user[0].liked.indexOf(usr[0].usersTasks[i]) >= 0){
+              //       console.log('LIKED');
+              //       usr[0].usersTasks[i].liked = true;
+              //     }else{
+              //       console.log('NO LIKED');
+              //       usr[0].usersTasks[i].liked = false;
+              //     }
+              //   }
 
-                usr[0]['loggedInUser'] = req.user[0].username;
-                console.log('Just looking user object',usr[0]);
-                res.render('otherProfile',usr[0]);
+              //   usr[0]['loggedInUser'] = req.user[0].username;
+              //   console.log('Just looking user object',usr[0]);
+              //   res.render('otherProfile',usr[0]);
+              // }else{
+              //   res.send('Please log in <a href="/">here</a>');
+              // }
+
+              if(usr[0].type == 'Company'){
+                res.render('CompanyProfile',usr[0]);
+              }else if(req.user[0].type == 'Student'){
+                res.render('StudentProfile',usr[0]);
               }else{
-                res.send('Please log in <a href="/">here</a>');
+                 res.send('Please log in <a href="/">here</a>');
               }
             }); 
           });

@@ -1,0 +1,17 @@
+r,s = map(int,input().split(' '))
+m =  []
+
+for _ in range(r):
+    m.append(input())
+
+neutral = ['.','S','F']
+l = {}
+counter = 0
+for s in m:
+    counter = 0
+    for c in s:
+        counter += 1
+        if c not in neutral:
+            l[c] = counter
+
+print(l)

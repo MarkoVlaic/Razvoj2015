@@ -18,11 +18,18 @@
 		<div ng-show="authenticated == true" class="col-sm-1 col-md-1 col-lg-1">
 			<a href="/removeTask/{{task.title}}">Remove</a>
 		</div>
-		<div ng-show="authenticated == false">
-			<form action="" method="post"></form>
 		</div>
-		</div>
-		
+		<div class="row">
+			<div class="col-sm-1 col-md-1 col-lg-1">
+				<div ng-show="authenticated == false">
+					
+				<input class="btn btn-default add" type="submit" value="Add to list" ng-show="solveList.indexOf(task.title + task.author) == -1" task="{{task}}" ng-click="addTask(task)">
+				<input class="btn btn-default add" type="submit" value="Remove from list" ng-show="solveList.indexOf(task.title + task.author) != -1" task="{{task}}" ng-click="addTask(task)">
+					
+
+			</div>
+			</div>
+		</div>			
 	</div>	
 		
 

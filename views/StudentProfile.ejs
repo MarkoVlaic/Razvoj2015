@@ -66,11 +66,11 @@
 					</li>-->
 
 					<li ng-class="{active: activeTab == 'Create'}">
-						<a href ng-click="activeTab = 'Create'">Create Task
+						<a href ng-click="activeTab = 'Create'" ng-show="authenticated==true">Create Task
 						</a>
 					</li>
 
-					<li ng-class="{active: activeTab == 'Upload'}">
+					<li ng-class="{active: activeTab == 'Upload'}" ng-show="authenticated==true">
 						<a href ng-click="activeTab = 'Upload';
 						">Upload task</a>
 					</li>

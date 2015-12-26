@@ -28,7 +28,7 @@ body{
 }
 
 .file{
-	border:1px solid #CCCCCC;
+	border-bottom:2px solid #CCCCCC;
 	border-radius: 1px;
 }
 
