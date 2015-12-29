@@ -37,6 +37,7 @@ router.post('/addTaskToSolve',function(req,res){
 			mongoose.model('users').update(condition,update,options,function(err,updated){
 				if(err) throw err;
 				console.log('User updated');
+				res.sendStatus(200);
 				// res.redirect('/'+req.body.author);
 			});
 

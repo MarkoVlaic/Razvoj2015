@@ -39,12 +39,13 @@ passport.deserializeUser(function(id,done){
 
 router.post('/login',function(req,res,next){
 		console.log('my function is running');
+		console.log('This username',req.body.username);
 		process.env.message = 'Invali username or password';
 		return next();
 	},
 	passport.authenticate('local',{ failureRedirect: '/', failureFlash: true }),function(req,res){
 	if(req.isAuthenticated()){
-		res.redirect('/');
+		res.redirect('/'+req.body.username);
 	}else{
 		process.env.message = 'Invalid username or password';
 		res.redirect('/');

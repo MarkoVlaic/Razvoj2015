@@ -45,7 +45,6 @@ profileApp.controller("SolutionsController",function($scope,$http){
 	$http.post('/getUserObject',{username}).success(function(data){
 		$scope.solutions = data.solved;
 	});
-
 	$scope.indexFunction = function(l,i){
 		return l.indexOf(i);
 	}
@@ -55,11 +54,13 @@ profileApp.controller("SolutionsController",function($scope,$http){
 		return s.split(sep);
 	}
 
+	$scope.files = {};
+
 	$scope.previewFile = function(id){
 		console.log('Should preview file',id);
 		$http.post('/preview',{name:id}).success(function(data){
-			$scope.file = data;
 			console.log('Data I get is',data);
+			$scope.files[id] = '<p>' + data + '</p>';
 		});
 	};
 
@@ -91,6 +92,7 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
 		var parameters = {title:task.title,author:task.author};
 		console.log('These are the parameters',parameters);
 		$http.post('/addTaskToSolve',parameters).success(function(data){
+			console.log('Reload the fucking window');
 			$window.location.reload();
 		});
 	}

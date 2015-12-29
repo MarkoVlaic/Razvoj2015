@@ -4,6 +4,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Grid = require('gridfs-stream');
 var gfs = null;
+var fs = require('fs');
 
 setTimeout(function(){
 	gfs = Grid(mongoose.connection.db,mongoose.mongo);
@@ -11,10 +12,8 @@ setTimeout(function(){
 
 router.post('/preview',function(req,res){
 	console.log('req.body',req.body);
-	console.log('req.query',req.query);
-	console.log('req.params',req.params);
 
-	var readStream = gfs.createReadStream({filename:req.query.name});
+	var readStream = gfs.createReadStream({filename:req.body.name});
 	var buffer = '';
 	readStream.on('data',function(chunk){
 		console.log('chunk',chunk);
@@ -25,6 +24,9 @@ router.post('/preview',function(req,res){
 		console.log('Ive read:',buffer);
 		res.send(buffer);
 	});
+
+	// gfs.readFile({filename:req.body.});
+	
 });
 
 
