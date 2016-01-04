@@ -14,11 +14,11 @@ router.post('/addTask',function(req,res){
 		desc:req.body.desc,
 		author:req.user[0].username,
 		comments:[],
-		likes:0,
+		likedBy:[],
 		date:new Date()
 	});
 
-	req.user[0].usersTasks.push(newTask);
+	req.user[0].usersTasks.push(newTask.author+'-'+newTask.title);
 
 	var condition = {username:req.user[0].username};
 	var update = {$set:{usersTasks:req.user[0].usersTasks}};
@@ -86,5 +86,36 @@ router.get('/removeTask/:title',function(req,res){
 });
 
 
+router.get('/loadTask/:id',function(req,res){
+	var id = req.params.id.split('-');
+	console.log('author',id[0],'Title',id[1]);
+	mongoose.model('tasks').findOne({author:id[0],title:id[1]},function(err,task){
+		if(err) throw err;
+		res.send(task);
+	});
+});
+
+
+router.get('/likeTask/:id',function(req,res){
+	var id = req.params.id.split('-');
+	console.log('This is id',id);
+	mongoose.model('tasks').findOne({author:id[0],title:id[1]},function(err,task){
+		if(err) throw err;
+		
+		if(task.likedBy.indexOf(id[2]) != -1){
+			task.likedBy.splice(task.likedBy.indexOf(id[2]));
+		}else{
+			task.likedBy.push(id[2]);
+		}
+
+		var condition = {author:id[0],title:id[1]};
+		var update = {$set:{likedBy:task.likedBy}}
+		mongoose.model('tasks').update(condition,update,function(err,taskUpdated){
+			if(err) throw err;
+			res.send(task.likedBy.length.toString());
+		});
+
+	});
+});
 
 module.exports = router;

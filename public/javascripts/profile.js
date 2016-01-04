@@ -60,7 +60,7 @@ profileApp.controller("SolutionsController",function($scope,$http){
 		console.log('Should preview file',id);
 		$http.post('/preview',{name:id}).success(function(data){
 			console.log('Data I get is',data);
-			$scope.files[id] = '<p>' + data + '</p>';
+			$scope.files[id] = '<pre><code>' + data + '</code></pre>';
 		});
 	};
 
@@ -68,12 +68,14 @@ profileApp.controller("SolutionsController",function($scope,$http){
 
 profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
 	var username = document.getElementById('username').value;
+	var loggedInUser = '';
 	console.log('username',username);
 	$scope.authenticated = false;
 	$scope.solveList = [];
-	
 	$http.post('/getUserObject',{username:'req'}).success(function(data){
 		console.log('data.username',data.username);
+		loggedInUser = data.username;
+		$scope.loggedInUser = loggedInUser;
 		if(data.username == username){
 			$scope.authenticated = true;
 		}
@@ -84,8 +86,22 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
 	});
 	
 	$http.post('/getUserObject',{username:username}).success(function(data){
-		console.log('Data',data.usersTasks);
-		$scope.usersTasks = data.usersTasks.reverse();
+		console.log('usersTasks',data.usersTasks);
+		// $scope.usersTasks = data.usersTasks.reverse();
+		$scope.usersTasks = [];
+		$scope.likes = {};
+		$scope.liked = {};
+		// console.log('Data.usersTasks'.data.usersTasks);
+		angular.forEach(data.usersTasks.reverse(),function(task){
+			console.log('Task',task);
+			$http.get('/loadTask/'+task).success(function(t){
+				$scope.usersTasks.push(t);
+				$scope.likes[t.title] = t.likedBy.length;
+				$scope.liked[t.title] = (t.likedBy.indexOf(loggedInUser) != -1);
+				console.log('Pushing a task');
+				console.log('Liked object',$scope.liked);
+			});
+		});
 	});
 
 	$scope.addTask = function(task){
@@ -97,4 +113,65 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
 		});
 	}
 
+	$scope.likeTask = function(id){
+		$http.get('/likeTask/'+id+'-'+loggedInUser).success(function(data){
+			console.log('Task liked',data);
+			$scope.likes[id.split('-')[0]] = data; 
+			$scope.liked[id.split('-')[1]] = !$scope.liked[id.split('-')[1]];
+			console.log($scope.liked);
+			$scope.$broadcast('likeEvent');
+		});
+	}
+
+});
+
+
+//directives
+profileApp.directive('ngLike',function(){
+	return {
+		restrict:'A',
+		scope:{
+			ngTaskId:'@'
+		},
+		template:'<label>Likes:{{likes}}</label>',
+		controller:['$scope','$http',function($scope,$http){
+			//Do the controller here
+			$scope.setLikes = function(id){
+				$http.get('/loadTask/'+id).success(function(data){
+					$scope.likes = data.likedBy.length;
+				});
+			}
+			$scope.$on('likeEvent',function(){
+				console.log('This is like event');
+				$scope.setLikes($scope.ngTaskId);
+			});
+		}],
+		link: function(scope,iElement,iAttrs,ctrl){
+			scope.setLikes(iAttrs.ngTaskId);
+			scope.$watch('likes',function(newVal){
+				console.log('I noticed the change',newVal);
+			});
+		}
+	}
+});
+
+profileApp.directive('ngTaskId',function(){
+	return {
+		controller:function($scope){}
+	}
+});
+
+profileApp.directive('ngLikeButton',function(){
+	return{
+		restrict:'A',
+		scope:{
+			ngTaskId:"@"
+		},
+		link: function(scope,iElement){
+			iElement.bind('click',function(e){
+				// angular.element(e.target).siblings('#'+scope.ngTaskId).trigger();
+				// scope.$broadcast('likeEvent');
+			});
+		},
+	}
 });

@@ -22,16 +22,23 @@ router.get('/',function(req,res){
 });
 
 router.get('/:username',function(req,res){
-  mongoose.model('users').findOne({username:req.params.username},function(err,user){
-    if(err) throw err;
-     if(user.type == 'Company'){
+  if(!req.isAuthenticated()){
+    res.redirect('/');
+    process.env.message = 'Please log in to view the requested profile';
+  }else{
+    mongoose.model('users').findOne({username:req.params.username},function(err,user){
+      if(err) throw err;
+      if(user == null){
+        res.send('This webpage does not exist! Please check your search again.');
+      }else if(user.type == 'Company'){
         res.render('CompanyProfile',user);
       }else if(req.user[0].type == 'Student'){
         res.render('StudentProfile',user);
       }else{
          res.send('Please log in <a href="/">here</a>');
       }
-  });
+    });
+  }
 });
 
 module.exports = router;

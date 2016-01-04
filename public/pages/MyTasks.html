@@ -15,36 +15,26 @@
 			<div ng-bind-html="'<h3>'+task.desc+'</h3>'"></div>
 		</div>
 
+
 		<div ng-show="authenticated == true" class="col-sm-1 col-md-1 col-lg-1">
 			<a href="/removeTask/{{task.title}}">Remove</a>
 		</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-1 col-md-1 col-lg-1">
-				<div ng-show="authenticated == false">
-					
-				<input class="btn btn-default add" type="submit" value="Add to list" ng-show="solveList.indexOf(task.title + task.author) == -1" task="{{task}}" ng-click="addTask(task)">
+			<div class="col-sm-4 col-md-3 col-lg-3">	
+				<input class="btn btn-default add" type="submit" value="Add to list" ng-show="solveList.indexOf(task.title + task.author) == -1 && authenticated == false" task="{{task}}" ng-click="addTask(task)">
 				<input class="btn btn-default add" type="submit" value="Remove from list" ng-show="solveList.indexOf(task.title + task.author) != -1" task="{{task}}" ng-click="addTask(task)">
-					
+				<button class="btn btn-default" ng-show="authenticated == false && !liked[task.title]" ng-click="likeTask(task.author + '-' + task.title)" ng-like-button>Like</button><!-- <div ng-like ng-task-id="{{task.author + '-' + task.title}}"></div> -->
+				<!-- {{'HAJOOO'+ liked[task.title]}} -->
+				<button class="btn btn-default" ng-show="authenticated == false && liked[task.title]" ng-click="likeTask(task.author + '-' + task.title)" ng-like-button>Disike</button>
+				<div ng-like ng-task-id="{{task.author + '-' + task.title}}"></div>
 
+				<button class="btn btn-default">Comment</button>
 			</div>
+			<div class="col-sm-1 col-md-1 col-lg-1">
+				<
 			</div>
 		</div>			
 	</div>	
-		
-
-	<!--<%if(usersTasks.length == 0){%>
-			<h3>No tasks yet</h3s		<%}%>
-		<% for (var i = usersTasks.length-1; i > -1; i--) { %>
-			<div class="task" id="<%= usersTasks[i].title %>">
-			
-				<!--<h3><%=usersTasks[i].author%> </h3>-->
-				<!--<p><%=usersTasks[i].source%> </p>-->
-					<!--<h1>Comments</h1>
-					<% for (var i2 = 0; i2 < usersTasks[i].comments.length; i2++) { %>
-					<p><%=usersTasks[i].comments[i2].cauthor%> <%=usersTasks[i].comments[i2].comment%> </p>
-					<% } %> 
-				
-			</div>
-		<% } %> -->
+	
 </div>
