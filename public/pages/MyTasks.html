@@ -26,8 +26,7 @@
                 <input class="btn btn-default add" type="submit" value="Remove from list" ng-show="solveList.indexOf(task.title + task.author) != -1" task="{{task}}" ng-click="addTask(task)">
                 <button class="btn btn-default" ng-show="authenticated == false && !liked[task.title]" ng-click="likeTask(task.author + '-' + task.title)" ng-like-button>Like</button><!-- <div ng-like ng-task-id="{{task.author + '-' + task.title}}"></div> -->
                 <!-- {{'HAJOOO'+ liked[task.title]}} -->
-
-<!--                <button class="btn btn-default" ng-click="">Comment</button>-->
+                <button class="btn btn-default" ng-click="showComments[task.author + '-' + task.title] = !showComments[task.author + '-' + task.title]">Read comments</button>
                 <button class="btn btn-default" ng-show="authenticated == false &&  liked[task.title]" ng-click="likeTask(task.author + '-' + task.title)" ng-like-button>Dislike</button>
                 <div ng-like ng-task-id="{{task.author + '-' + task.title}}"</div>
 
@@ -37,11 +36,12 @@
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
 <!--                {{comments}}-->
-                <div class="comments" ng-repeat="comment in task.comments track by $index">                    
-                    <p><a href="{{comments[comment].author}}">
-                        {{comments[comment].author}}    
-                    </a>{{comments[comment].content}}</p>
-
+                <div class="comments row" ng-repeat="comment in task.comments track by $index" ng-show="showComments[task.author + '-' + task.title]">                 
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <p><a href="{{comments[comment].author}}">
+                            {{comments[comment].author}}    
+                        </a>{{comments[comment].content}}<span class="glyphicon glyphicon-remove" ng-show="comments[comment].author == loggedInUser" ng-click="removeComment(comment,task.author + '-' + task.title)"></span></p> 
+                    </div>
                 </div>
             </div>
         </div>

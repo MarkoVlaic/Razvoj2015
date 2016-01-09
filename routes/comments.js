@@ -46,5 +46,21 @@ router.post('/commentTask',function(req,res){
     
 });
 
+router.post('/removeComment',function(req,res){
+    var taskId = req.body.taskId.split('-');
+    mongoose.model('tasks').findOne({author:taskId[0],title:taskId[1]},function(err,task){
+        task.comments.splice(task.comments.indexOf(req.body.commentId),1);
+    var condition = {author:taskId[0],title:taskId[1]};
+    var update = {$set:{comments:task.comments}};
+    mongoose.model('tasks').update(condition,update,{},function(err,taskUpdated){
+        if(err) throw err;
+        mongoose.model('comments').remove({_id:mongoose.Types.ObjectId(req.body.commentId)},function(err,removed){
+            if(err) throw err;
+            console.log('Comment removed everythings fine');
+            res.send('Done');
+        });
+    });
+    });
+});
 
 module.exports = router;

@@ -73,6 +73,8 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
 	/*
     -Postaviti likeove i komentare za zadatke
     */
+    $scope.showComments = {};
+    
 	$http.post('/getUserObject',{username:username}).success(function(data){
 		console.log('usersTasks',data.usersTasks);
 		// $scope.usersTasks = data.usersTasks.reverse();
@@ -83,6 +85,7 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
 		// console.log('Data.usersTasks'.data.usersTasks);
 		angular.forEach(data.usersTasks.reverse(),function(task){
 			console.log('Task',task);
+            $scope.showComments[task] = false;
 			$http.get('/loadTask/'+task).success(function(t){
 				$scope.usersTasks.push(t);
 				$scope.likes[t.title] = t.likedBy.length;
@@ -129,6 +132,7 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
                 console.log(data);
 //                $scope.$broadcast('commentEvent');
                 $scope.updateComments(taskId);
+                $scope.showComments[taskId] = true;
             });
         }
         
@@ -156,6 +160,15 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
                     $scope.usersTasks.push(t);
                 });
             });
+        });
+    }
+    
+    /*
+        -Funkcija za micanje komentara
+    */
+    $scope.removeComment = function(commentId,taskId){
+        $http.post('/removeComment',{commentId:commentId,taskId:taskId}).success(function(data){
+            $scope.updateComments(taskId);
         });
     }
     
