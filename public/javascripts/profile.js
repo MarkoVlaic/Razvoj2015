@@ -159,31 +159,7 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
         });
     }
     
-    
-//    $scope.$on('commentEvent',function(){
-//        console.log('cOMMENT event');
-//        $http.post('/getUserObject',{username:username}).success(function(data){
-//            console.log('DATA TO SEARCH...',data);
-//            angular.forEach(data.usersTasks,function(task){
-////                console.log('Tasl to load',task);
-//                $http.get('loadTask/'+task).success(function(t){
-//                    var contentInput = document.getElementById(t.author + '-' + t.title);
-//                    contentInput.value = '';
-//                    angular.forEach(t.comments,function(c){
-////                        console.log('Comment',c);
-//                        $http.get('loadComment/'+c).success(function(d){
-////                            console.log('This comment loaded',d);
-//                            $scope.comments[c] = d;
-//                            console.log('Comments obj now',$scope.comments);
-//                        });
-//                    });
-//                });
-//            });
-//            console.log('Comments object after',$scope.comments);
-//        });
-//    });
-    
-    });
+});
 
 
 //directives
