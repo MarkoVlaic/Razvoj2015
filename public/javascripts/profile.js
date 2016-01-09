@@ -1,23 +1,5 @@
 var profileApp = angular.module("ProfileApp",['ngSanitize']);
 
-profileApp.factory('tasksToSolve',function(){
-	var tasksToSolve = [];
-	var service = {};
-
-	service.setTasksToSolve = function(l){
-		console.log('Setting tasks to solve',l);
-		tasksToSolve = l;
-	}
-
-	service.getTasksToSolve = function(){
-		console.log('Getting thesee tasks',tasksToSolve);
-		return tasksToSolve;
-	}
-
-	return service;
-
-});
-
 profileApp.controller("MenuController",function($scope,$http){
 	// $scope.activeTab = "Create";
 	// $scope.setTasksToSolve = tasksToSolve.setTasksToSolve;
@@ -25,20 +7,20 @@ profileApp.controller("MenuController",function($scope,$http){
 	var username = document.getElementById('username').value;
 	var authenticated = false;
 	$http.post('/getUserObject',{username:'req'}).success(function(data){
-		console.log('data.username',data.username);
+//		console.log('data.username',data.username);
 		if(data.username == username){
 			$scope.authenticated = true;
 		}
-	});
-});
+        });
+    });
 
 profileApp.controller("UploadController",function($scope,$http){
 	var username = document.getElementById('username').value;
 	$http.post('/getUserObject',{username:username}).success(function(data){
 		$scope.tasksToSolve = data.tasksToSolve;
-		console.log('data',data.tasksToSolve);
-	});
-});
+//		console.log('data',data.tasksToSolve);
+        });
+    });
 
 profileApp.controller("SolutionsController",function($scope,$http){
 	var username = document.getElementById('username').value;
@@ -50,14 +32,14 @@ profileApp.controller("SolutionsController",function($scope,$http){
 	}
 
 	$scope.splitFunction = function(s,sep){
-		console.log('s',s);
+//		console.log('s',s);
 		return s.split(sep);
 	}
 
 	$scope.files = {};
 
 	$scope.previewFile = function(id){
-		console.log('Should preview file',id);
+//		console.log('Should preview file',id);
 		$http.post('/preview',{name:id}).success(function(data){
 			console.log('Data I get is',data);
 			$scope.files[id] = '<pre><code>' + data + '</code></pre>';
@@ -72,8 +54,12 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
 	console.log('username',username);
 	$scope.authenticated = false;
 	$scope.solveList = [];
+    /*
+        -Odrediti je li korisnik ulogiran, srediti listu 
+        -Odrediti zadatke za dodavanje, odnosno micanje s liste
+    */
 	$http.post('/getUserObject',{username:'req'}).success(function(data){
-		console.log('data.username',data.username);
+//		console.log('data.username',data.username);
 		loggedInUser = data.username;
 		$scope.loggedInUser = loggedInUser;
 		if(data.username == username){
@@ -82,15 +68,18 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
 		for (var i = 0; i < data.tasksToSolve.length; i++) {
 			$scope.solveList.push(data.tasksToSolve[i].title + data.tasksToSolve[i].author);
 		};
-		console.log('Solve list',$scope.solveList);
+//		console.log('Solve list',$scope.solveList);
 	});
-	
+	/*
+    -Postaviti likeove i komentare za zadatke
+    */
 	$http.post('/getUserObject',{username:username}).success(function(data){
 		console.log('usersTasks',data.usersTasks);
 		// $scope.usersTasks = data.usersTasks.reverse();
 		$scope.usersTasks = [];
 		$scope.likes = {};
 		$scope.liked = {};
+        $scope.comments = {};
 		// console.log('Data.usersTasks'.data.usersTasks);
 		angular.forEach(data.usersTasks.reverse(),function(task){
 			console.log('Task',task);
@@ -98,21 +87,30 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
 				$scope.usersTasks.push(t);
 				$scope.likes[t.title] = t.likedBy.length;
 				$scope.liked[t.title] = (t.likedBy.indexOf(loggedInUser) != -1);
-				console.log('Pushing a task');
-				console.log('Liked object',$scope.liked);
+				angular.forEach(t.comments,function(c){
+                    console.log('Comment',c);
+                    $http.get('/loadComment/'+c).success(function(d){
+                        $scope.comments[c] = d;
+                    });
+                });
+                
 			});
 		});
+//        $scope.$broadcast('commentEvent');
 	});
-
+    /*
+        -Funkcija za dodavanje zadatka na listu za rjesavanje
+    */
 	$scope.addTask = function(task){
 		var parameters = {title:task.title,author:task.author};
 		console.log('These are the parameters',parameters);
 		$http.post('/addTaskToSolve',parameters).success(function(data){
-			console.log('Reload the fucking window');
 			$window.location.reload();
 		});
 	}
-
+    /*
+        -Funkcija za like-anje zadatka
+    */
 	$scope.likeTask = function(id){
 		$http.get('/likeTask/'+id+'-'+loggedInUser).success(function(data){
 			console.log('Task liked',data);
@@ -122,8 +120,70 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
 			$scope.$broadcast('likeEvent');
 		});
 	}
-
-});
+    /*
+        -Funkcija za komentiranje zadatka
+    */
+    $scope.commentTask = function(taskId){
+            var content = document.getElementById(taskId).value;
+            $http.post('/commentTask',{content:content,author:$scope.loggedInUser,taskId:taskId}).success(function(data){
+                console.log(data);
+//                $scope.$broadcast('commentEvent');
+                $scope.updateComments(taskId);
+            });
+        }
+        
+    /*
+        -Funkcija za update zadataka
+    */
+    
+    $scope.updateComments = function(taskId){
+        var contentInput = document.getElementById(taskId);
+        contentInput.value = '';
+        $http.get('/loadTask/'+taskId).success(function(task){
+            angular.forEach(task.comments,function(comment){
+                $http.get('/loadComment/'+comment).success(function(c){
+                    $scope.comments[comment] = c;
+                    console.log('Comments now',$scope.comments);
+                });
+            });
+        });
+        
+        $http.post('/getUserObject',{username:username}).success(function(data){
+            console.log('User object I get is',data);
+            $scope.usersTasks = [];
+            angular.forEach(data.usersTasks.reverse(),function(task){
+                $http.get('/loadTask/'+task).success(function(t){
+                    $scope.usersTasks.push(t);
+                });
+            });
+        });
+    }
+    
+    
+//    $scope.$on('commentEvent',function(){
+//        console.log('cOMMENT event');
+//        $http.post('/getUserObject',{username:username}).success(function(data){
+//            console.log('DATA TO SEARCH...',data);
+//            angular.forEach(data.usersTasks,function(task){
+////                console.log('Tasl to load',task);
+//                $http.get('loadTask/'+task).success(function(t){
+//                    var contentInput = document.getElementById(t.author + '-' + t.title);
+//                    contentInput.value = '';
+//                    angular.forEach(t.comments,function(c){
+////                        console.log('Comment',c);
+//                        $http.get('loadComment/'+c).success(function(d){
+////                            console.log('This comment loaded',d);
+//                            $scope.comments[c] = d;
+//                            console.log('Comments obj now',$scope.comments);
+//                        });
+//                    });
+//                });
+//            });
+//            console.log('Comments object after',$scope.comments);
+//        });
+//    });
+    
+    });
 
 
 //directives

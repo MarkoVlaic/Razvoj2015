@@ -22,6 +22,7 @@ var search = require('./routes/search');
 var addTask = require('./routes/addTask');
 var upload = require('./routes/upload');
 var fileHandle = require('./routes/fileHandle');
+var comments = require('./routes/comments.js');
 
 var mongoose = require('mongoose');
 
@@ -79,6 +80,7 @@ app.use('/',search);
 app.use('/',addTask);
 app.use('/',upload);
 app.use('/',fileHandle);
+app.use('/',comments);
 
 var ip =  process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 1337;
