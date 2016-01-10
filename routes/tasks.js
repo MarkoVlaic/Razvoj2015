@@ -12,6 +12,7 @@ router.post('/addTask',function(req,res){
 	var newTask = new Task({
 		title:req.body.title,
 		desc:req.body.desc,
+        language:req.body.language,
 		author:req.user[0].username,
 		comments:[],
 		likedBy:[],
