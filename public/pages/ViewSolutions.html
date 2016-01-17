@@ -18,15 +18,15 @@
 
 						<h3 id="{{indexFunction(solutions,solution)}}">{{splitFunction(solution,'-')[1] + ' - ' + splitFunction(solution,'-')[3]}}</h3>
 
-							<button class="btn btn-info btn-file btn-preview" id="{{solution}}" style="position:relative" ng-click="previewFile(solution)">Preview</button>
+							<button class="btn btn-info btn-file btn-preview" id="{{solution}}" style="position:relative" ng-click="previewFile(solution); showPreview[solution] = !showPreview[solution]">Preview</button>
 
 							<button class="btn btn-primary btn-file btn-download" id="{{solution}}" style="position:relative">Download</button>
 							<!-- TODO: Make this work-->
 							<!-- <pre><code class="python" ng-bind-html="files[solution]">
 							</code></pre> -->
 
-							<div ng-bind-html="files[solution]"></div>
-							
+<!--							<div ng-bind-html="files[solution]"></div>-->
+							 <div ng-show="showPreview[solution]" hljs hljs-source="files[solution]"></div>
 						</div>
 						<!--<%for(var i=0;i<solved.length;i++){%>
 						<div class="file" id="<%=solved[i]%>">

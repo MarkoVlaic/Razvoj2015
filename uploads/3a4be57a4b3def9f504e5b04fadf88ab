@@ -1,0 +1,15 @@
+s = int(input())
+c = list(map(int,input().split()))
+sol = {}
+#5print('c',c)
+for v in range(1,s+1):
+  #print(v)
+  sol[v] = float('inf')
+sol[0] = 0
+
+for i in range(1,s+1):
+  for v in c:
+    if v <= i and sol[i-v]+1<sol[i]:
+      sol[i] = sol[i-v]+1
+
+print(sol[s])

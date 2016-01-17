@@ -48,7 +48,18 @@ router.post('/uploadTask',upload.array('fileUpload',limit),function(req,res){
 			mongoose.model('users').update(condition,update,options,function(err,updated){
 				if(err) throw err;
 				console.log('Updated');
-				res.redirect('/');
+                var info = req.body.info.split('-');
+                mongoose.model('tasks').findOne({title:info[0],author:info[1]},function(err,task){
+                    task.solvedBy.push(req.user[0].username);
+                    
+                    var condition = {title:info[0],author:info[1]};
+                    var update = {solvedBy:task.solvedBy};
+                    mongoose.model('tasks').update(condition,update,{},function(err,taskUpdated){
+                        console.log('Task updated');
+                        res.redirect('/');
+                    });
+                })
+				
 			});
 			// res.send('Done');
 		}).on('error',function(){

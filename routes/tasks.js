@@ -105,6 +105,26 @@ router.get('/likeTask/:id',function(req,res){
 		
 		if(task.likedBy.indexOf(id[2]) != -1){
 			task.likedBy.splice(task.likedBy.indexOf(id[2]));
+            var toRemove = {type:'like',sender:req.user[0].username,reciever:id[0]};
+            mongoose.model('users').findOne({username:id[0]},function(err,user){
+                    if(err) throw err;
+                        mongoose.model('notifications').find(toRemove,function(err,notif){
+                        if(err) throw err;
+                        user.notifications.splice(user.notifications.indexOf(notif._id),1);
+
+    var condition = {username:user.username};         
+    var update = {notifications:user.notifications};
+    
+    mongoose.model('users').update(condition,update,{},function(err,userUpdated){
+        if(err) throw err;
+                mongoose.model('notifications').remove(toRemove,function(err,removed){
+                        if(err) throw err;
+                        console.log('Notification removed');
+                });
+            });               
+        });
+    });
+            
 		}else{
 			task.likedBy.push(id[2]);
 		}

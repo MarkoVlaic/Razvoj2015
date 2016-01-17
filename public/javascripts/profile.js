@@ -1,4 +1,26 @@
-var profileApp = angular.module("ProfileApp",['ngSanitize']);
+var profileApp = angular.module("ProfileApp",['ngSanitize','hljs']);
+
+profileApp.controller('navController',function($scope,$http){
+    $http.post('/getUserObject',{username:'req'}).success(function(data){
+        $scope.loggedInUser = data.username;
+        $scope.notifications = [];
+        console.log('Notifiications',data.notifications);
+        angular.forEach(data.notifications,function(notification){
+        console.log('Single notification',notification);
+        $http.get('/loadNotification/'+notification).success(function(d){
+                $scope.notifications.push(d);
+            });
+        });
+    });
+    
+});
+
+profileApp.controller('profileHeaderController',function($scope,$http){
+    var username = document.getElementById('username').value;
+    $http.get('/getProfilePic/'+username).success(function(data){
+        $scope.profilePic = data;
+    });
+});
 
 profileApp.controller("MenuController",function($scope,$http){
 	// $scope.activeTab = "Create";
@@ -12,7 +34,7 @@ profileApp.controller("MenuController",function($scope,$http){
 			$scope.authenticated = true;
 		}
         });
-    });
+});
 
 profileApp.controller("UploadController",function($scope,$http){
 	var username = document.getElementById('username').value;
@@ -22,10 +44,14 @@ profileApp.controller("UploadController",function($scope,$http){
         });
     });
 
-profileApp.controller("SolutionsController",function($scope,$http){
+profileApp.controller("SolutionsController",function($scope,$http,$sce){
 	var username = document.getElementById('username').value;
+    $scope.showPreview = {};
 	$http.post('/getUserObject',{username}).success(function(data){
 		$scope.solutions = data.solved;
+        angular.forEach($scope.solutions,function(solution){
+            $scope.showPreview[solution] = false;
+        });
 	});
 	$scope.indexFunction = function(l,i){
 		return l.indexOf(i);
@@ -37,13 +63,28 @@ profileApp.controller("SolutionsController",function($scope,$http){
 	}
 
 	$scope.files = {};
-
+    $scope.trust = {};
+    
 	$scope.previewFile = function(id){
 //		console.log('Should preview file',id);
 		$http.post('/preview',{name:id}).success(function(data){
 			console.log('Data I get is',data);
-			$scope.files[id] = '<pre><code>' + data + '</code></pre>';
+            var output = '';
+            var s = '';
+            for(var i=0;i<data.length;i++){
+                if(data[i] != ' '){
+                    s += data[i];
+                }else{
+                    output += '<span class="str">' + s + '</span>';
+                    s = '';
+                }
+            }
+//			$scope.files[id] = '<pre><code class="python">' + data + '</code></pre>';
+            $scope.files[id] = data;
 		});
+        $scope.trust[id] = function(){
+                return $sce.trustAsHtml($scope.files[id]);
+            } 
 	};
 
 });
@@ -172,8 +213,17 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
         });
     }
     
+    $scope.sendNotification = function(type,reciever,object){
+        var sender = $scope.loggedInUser;
+        var s = object.split('-')[0] == 'Task'? 'your ' + object.split('-')[1] +' task' : 'you'
+        var content = '<a href="/' + sender + '">' + sender + '</a>' + ' - ' + type + 'd ' + s;
+        var form = {type:type,content:content,sender:sender,reciever:reciever,object:object};
+        $http.post('/addNotification',form).success(function(data){
+            
+        });
+    }
+    
 });
-
 
 //directives
 profileApp.directive('ngLike',function(){
@@ -224,3 +274,4 @@ profileApp.directive('ngLikeButton',function(){
 		},
 	}
 });
+

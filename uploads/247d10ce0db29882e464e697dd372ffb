@@ -1,0 +1,74 @@
+def getLetter(p,i):
+  try:
+    return t[i + p]
+  except:
+    None
+def getIndex(p,i):
+  return (i+p)
+
+def toMinus(l):
+  res = []
+  for i in l:
+    res.append(i*-1)
+  return res
+
+def findField(t,ti,si,d,ts,res,curS,checked):
+    print('res',res,'Cur s',curS)
+    print('Current',t[ti])
+    #row = (ti//5)+1
+    #col = (ti%5)+1
+    tc = []
+    for di in d:
+      #print('di',di)
+      if si != len(ts)-1 and getLetter(di,ti) == ts[si+1] and getIndex(di,ti) not in checked:
+        tc.append(getIndex(di,ti))
+        checked.append(getIndex(di,ti))
+        res.append(getIndex(di,ti))
+        curS += getLetter(di,ti)
+      elif si == len(ts):
+        pass
+        #return res
+    print('tc',tc)
+    for x in tc:
+      print('Goto',t[x])
+      fl = findField(t,x,si+1,d,ts,res,curS,checked)
+      print('fl',fl)
+      if fl[0] == ts:
+        #res.append(fl)
+        return fl[1]
+        break
+    if curS == ts:
+      return res
+    else:
+      return (curS,res)
+  
+t = ''
+
+for i in range(5):
+  t += input()
+
+s = input()
+
+
+p = {}
+si = 0
+d = [1,-1,5,-5,4,-4,6,-6]
+res = []
+for i in range(len(t)):
+  if t[i] == s[si]:
+    sol = findField(t,i,si,d,s,[i],s[si],[si])[1]
+      
+res = []
+for s in range(len(t)):
+  if s in sol:
+    res.append(t[s])
+  else:
+    res.append('*')
+
+s = ''
+for r in range(0,len(res)):
+  s += res[r]
+  if r%5 == 4 and r!=0:
+    s += '\n'
+print(s)
+  
