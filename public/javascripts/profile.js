@@ -215,7 +215,11 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
     
     $scope.sendNotification = function(type,reciever,object){
         var sender = $scope.loggedInUser;
+<<<<<<< HEAD
         var s = object.split('-')[0] == 'Task'? 'your ' + object.split('-')[1] +' task' : 'you'
+=======
+        var s = object.split('-')[0] == '<a' '>' + 'Task</a>'? 'your task' : 'you'
+>>>>>>> 3f959031fe22f536723d4c80bcfd298579ab2b81
         var content = '<a href="/' + sender + '">' + sender + '</a>' + ' - ' + type + 'd ' + s;
         var form = {type:type,content:content,sender:sender,reciever:reciever,object:object};
         $http.post('/addNotification',form).success(function(data){
