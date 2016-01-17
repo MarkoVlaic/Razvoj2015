@@ -11,6 +11,16 @@ profileApp.controller('navController',function($scope,$http){
                 $scope.notifications.push(d);
             });
         });
+        
+    var username = document.getElementById('username').value;
+	var authenticated = false;
+	$http.post('/getUserObject',{username:'req'}).success(function(data){
+            console.log('data.username',data.username,'username','i');
+            if(data.username == username){
+                $scope.authenticated = true;
+            }
+        });
+        
     });
     
 });
