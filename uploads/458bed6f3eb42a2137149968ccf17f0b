@@ -1,0 +1,21 @@
+class drawer:
+  picture = ''
+  types = {0:' ',1:u"\u25A0",2:"\n"}
+  def __init__(self):
+    pass
+  def drawPixel(self,t):
+    self.picture += self.types[t]
+  def display(self):
+    return self.picture
+
+widht,height = map(int,input('Enter width and height ').split(' '))
+bitmap = []
+draw = drawer()
+for _ in range(height):
+  bitmap.append(input().split(' ')+['2'])
+for l in bitmap:
+  for i in l:
+    draw.drawPixel(int(i))
+
+print(draw.display())
+input()

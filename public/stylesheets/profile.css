@@ -36,3 +36,25 @@ body{
 	margin-top:3px;
 	margin-bottom: 2px;
 }
+
+.fileInput{
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+    
+}
+
+label:hover {
+    cursor: pointer;
+}

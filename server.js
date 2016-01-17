@@ -17,12 +17,12 @@ var profile = require('./routes/profile');
 var tasks = require('./routes/tasks');
 var follow = require('./routes/follow');
 var homepage = require('./routes/homepage');
-// var like = require('./routes/like');
 var search = require('./routes/search');
 var addTask = require('./routes/addTask');
 var upload = require('./routes/upload');
 var fileHandle = require('./routes/fileHandle');
 var comments = require('./routes/comments.js');
+var notifications = require('./routes/notifications.js');
 
 var mongoose = require('mongoose');
 
@@ -75,12 +75,12 @@ app.use('/',profile);
 app.use('/',tasks);
 app.use('/',follow);
 app.use('/',homepage);
-// app.use('/',like);
 app.use('/',search);
 app.use('/',addTask);
 app.use('/',upload);
 app.use('/',fileHandle);
 app.use('/',comments);
+app.use('/',notifications);
 
 var ip =  process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 1337;
