@@ -51,7 +51,7 @@ app.use(passport.session());
 dev = false;
 if(!dev){
 	console.log('Not in dev');
-	var conn = mongoose.connect('mongodb://osak:MaPa2015!@ds059722.mongolab.com:59722/osak',function(){
+	var conn = mongoose.connect('mongodb://MarkoVlaic:bg14072014@ds035995.mongolab.com:35995/razvojdevelopment',function(){
 	  console.log("database connected");
 	  // console.log("Bla bla",mongoose.connection.db);
 	  // console.log("Ko filip",mongoose.db);
