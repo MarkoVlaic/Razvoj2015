@@ -56,7 +56,7 @@ router.post('/uploadTask',upload.array('fileUpload',limit),function(req,res){
                     var update = {solvedBy:task.solvedBy};
                     mongoose.model('tasks').update(condition,update,{},function(err,taskUpdated){
                         console.log('Task updated');
-                        res.redirect('/');
+                        res.redirect('/'+req.user[0].username);
                     });
                 })
 				

@@ -75,41 +75,50 @@ router.post('/getUserObject',function(req,res){
 });
 
 router.get('/getProfilePic/:username',function(req,res){
+    
     mongoose.model('users').findOne({username:req.params.username},function(err,user){
         if(err) throw err;
         console.log('users profile pic',user.profilePic);
-        if(typeof(user.profilePic) == 'undefined'){
-            console.log('profile pic undefined');
+        if(typeof(user.profilePic) == 'undefined' || user.profilePic == null){
             res.send('images/noUser1.jpg');
         }else{
-            var readStream = gfs.createReadStream({_id:user.profilePic});
+            console.log('Users profilePic is',user.profilePic);
+            var readStream = gfs.createReadStream({filename:user.profilePic});
             var buffer = '';
             readStream.on('data',function(chunk){
                 buffer += chunk;
             });
             readStream.on('end',function(){
                 console.log('This is the pic',buffer);
-                res.send(buffer);
+                fs.writeFile('public/images' + user.profilePic + '.jpg',buffer,function(err){
+                    if(err) throw err;
+                    res.send('public/images' + user.profilePic + '.jpg');
+                });
             });
         }
     });
 });
 
-router.post('/changeProfilePic',upload.array('profilePicInput',1),function(){
-    mongoose.model('users').findOne({username:req.body.username},function(err,user){
+router.post('/changeProfilePic',upload.array('profilePicInput',1),function(req,res){
 
+    console.log('req.files',req.files);
+    console.log('req.file',req.file);
+    mongoose.model('users').findOne({username:req.user[0].username},function(err,user){
+        console.log('user profile pic',user.profilePic);
         //remove existing profilePics
-        var saveString = 'Username'-req.body.username + '-ProfilePic'
+        var saveString = 'Username'+ req.user[0].username + '-ProfilePic'
+        console.log('Funking saveString',saveString);
         var writeStream = gfs.createWriteStream({filename:saveString});
         user.profilePic = saveString;
         fs.createReadStream(req.files[0].path).on('end',function(){
             console.log('Read stream ended');
-            var condition = {username:req.body.username};
+            var condition = {username:req.user[0].username};
             var update = {$set:{profilePic:user.profilePic}};
             mongoose.model('users').update(condition,update,{},function(err,userUpdated){
                 if(err) throw err;
                 console.log('User updated');
-                res.sendStatus(200);
+//                res.send(user.profilePic);
+                res.redirect('/'+req.user[0].username);
             });
         }).pipe(writeStream);
 

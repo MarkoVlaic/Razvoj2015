@@ -46,7 +46,8 @@
     <div class="collapse navbar-collapse" id="toCollapse">
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control" placeholder="Search" id="search" ng-keyup="search()">
+<!--            <span>{{searchResults}}</span>-->
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
@@ -78,7 +79,7 @@
         <ul class="nav navbar-nav navbar-right">
         <li><a href="/{{loggedInUser}}">{{loggedInUser}}</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications <span class="badge">{{notifications.length}}</span></a>
           <ul class="dropdown-menu">
 <!--              {{notifications}}-->
             <li ng-show="notifications.length == 0">No notifications yet</li>
@@ -98,15 +99,24 @@
 </nav>
         
 
-		<div class="container-fluid">
-			<div class="row" style="margin-bottom:3px;" ng-controller="profileHeaderController">
+<div class="container-fluid">
+			<div class="row" style="margin-bottom:3px;" ng-controller="profileHeaderController" ng-init="getProfilePic()">
 				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5
 				">
-                    {{'Authenticated ' + authenticated}}
+                    <form action="/changeProfilePic" method="post" enctype="multipart/form-data">
                     <input type="file" name="profilePicInput" id="profilePicInput" class="fileInput" ng-show="authenticated == true">
-					<label for="profilePicInput"><img id="profilePic" src="{{profilePic}}"></label>
+					<label ng-show="authenticated == true" for="profilePicInput"><img id="profilePic" src="{{profilePic}}"></label>
+                        
+                    <button type="submit">Change</button>
+                    </form>
+
+                    <img id="profilePic" src="{{profilePic}}" ng-show="authenticated == false">
 					<h1><%=name%> <%=lastname%></h1>
 				</div>
+                <div class="col-sm-1 col-md-1 col-lg-1" ng-show="authenticated == false">
+                    <button class="btn btn-default" ng-click="follow()" ng-show="following == false">Follow</button>
+                    <button class="btn btn-default" ng-click="follow()" ng-show="following == true">Unfollow</button>
+                </div>
 			</div><!-- row end -->
 
 			<!--<div class="row">	
@@ -199,12 +209,23 @@
 <!--				<h1 class="title">My tasks</h1>-->
 				
 
-	</div><!-- Container end -->
-
+<!--
+	</div> Container end 
+        <div class="predict-items" style="
+        position: absolute;
+        left: 80%;
+        top: 8%;
+        width: 20%;
+        height: 100%;
+    
+        ">
+            <div ng-repeat="res in searchResults"></div>
+        </div>
+-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script src="javascripts/task.js"></script>
-	<script src="javascripts/buttons.js"></script>
+<!--	<script src="javascripts/task.js"></script>-->
+<!--	<script src="javascripts/buttons.js"></script>-->
 
 	</body>
 

@@ -82,12 +82,16 @@ router.get('/removeTask/:title',function(req,res){
 	mongoose.model('users').update(condition,update,options,function(err,numUpdated){
 		if(err) throw err;
 		console.log('Tasks updated');
-		res.redirect('/'+req.user[0].username);
+        mongoose.model('tasks').remove({title:req.params.title},function(err,taskRemoved){
+            if(err) throw err;
+            res.redirect('/'+req.user[0].username);
+        });
 	});
 });
 
 
 router.get('/loadTask/:id',function(req,res){
+    console.log('Gonna load the task');
 	var id = req.params.id.split('-');
 	console.log('author',id[0],'Title',id[1]);
 	mongoose.model('tasks').findOne({author:id[0],title:id[1]},function(err,task){
@@ -98,6 +102,7 @@ router.get('/loadTask/:id',function(req,res){
 
 
 router.get('/likeTask/:id',function(req,res){
+    console.log('Gonna like it');
 	var id = req.params.id.split('-');
 	console.log('This is id',id);
 	mongoose.model('tasks').findOne({author:id[0],title:id[1]},function(err,task){

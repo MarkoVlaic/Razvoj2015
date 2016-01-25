@@ -26,4 +26,4 @@ function createTest(n)
 }
 
 console.log('Speed test started');
-createTest(10000);
+createTest(1000);

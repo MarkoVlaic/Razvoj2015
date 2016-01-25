@@ -6,16 +6,16 @@ var mongoose = require('mongoose');
 var userSchema = require('../Schemas/UserSchema');
 var User = mongoose.model('users');
 
-router.get('/follow',function(req,res){
+router.post('/follow',function(req,res){
 	console.log('following',req.user[0].following,'username',
-		req.query.username,
-		'boolean',req.user[0].following.indexOf(req.query.username < 0));
-	if(req.user[0].following.indexOf(req.query.username.replace(' ','')) < 0){
+		req.body.username,
+		'boolean',req.user[0].following.indexOf(req.body.username < 0));
+	if(req.user[0].following.indexOf(req.body.username.replace(' ','')) < 0){
 		console.log('Follow the user');
-		req.user[0].following.push(req.query.username);
+		req.user[0].following.push(req.body.username);
 	}else{
 		console.log('Unfollow the user');
-		req.user[0].following.splice(req.query.username,1);
+		req.user[0].following.splice(req.body.username,1);
 	}
 
 	var condition = {username:req.user[0].username};
@@ -27,13 +27,13 @@ router.get('/follow',function(req,res){
 		console.log('Following user updated');
 	});
 
-	console.log('req.query',req.query);
+	console.log('req.body',req.body);
 
-	mongoose.model('users').find({username:req.query.username},function(err,user){
+	mongoose.model('users').find({username:req.body.username},function(err,user){
 		if(err) throw err;
 		//HEREEEEE
 		console.log('username',user[0].username);
-		if(req.user[0].following.indexOf(req.query.username.replace(' ','')) < 0){
+		if(req.user[0].following.indexOf(req.body.username.replace(' ','')) < 0){
 			console.log('Gonna push it');
 			user[0].followers.splice(req.user[0].username,1);
 		}else{
@@ -41,7 +41,7 @@ router.get('/follow',function(req,res){
 			user[0].followers.push(req.user[0].username);
 		}
 
-		var condition = {username:req.query.username};
+		var condition = {username:req.body.username};
 		var update = {$set:{followers:user[0].followers}}
 		var options = {multi:false};
 
@@ -63,6 +63,7 @@ function isInList(item,list)
 		if(item === l){
 			console.log('found an item');
 			found = true;
+            return;
 		}
 	});
 

@@ -13,7 +13,7 @@ profileApp.controller('navController',function($scope,$http){
         });
         
     var username = document.getElementById('username').value;
-	var authenticated = false;
+    $scope.authenticated = false;
 	$http.post('/getUserObject',{username:'req'}).success(function(data){
             console.log('data.username',data.username,'username','i');
             if(data.username == username){
@@ -23,13 +23,60 @@ profileApp.controller('navController',function($scope,$http){
         
     });
     
+    $scope.searchResults = [];
+    
+    $scope.search = function(){
+        var toSearch = document.getElementById('search').value;
+        $http.post('/search',{search:toSearch}).success(function(data){
+            $scope.searchResults = data;
+        });
+    }
+    
 });
 
 profileApp.controller('profileHeaderController',function($scope,$http){
     var username = document.getElementById('username').value;
-    $http.get('/getProfilePic/'+username).success(function(data){
-        $scope.profilePic = data;
+   
+    $scope.authenticated = false;
+	$http.post('/getUserObject',{username:'req'}).success(function(data){
+            console.log('data.username',data.username,'username','i');
+            if(data.username == username){
+                $scope.authenticated = true;
+            }
+            console.log('Am i fucking authenticated',$scope.authenticated);
+            if(data.following.indexOf(username) == -1){
+                $scope.following = false;
+            }else{
+                $scope.following = true;
+            }
+        });
+    
+    $scope.getProfilePic = function(){
+        $http.get('/getProfilePic/'+username).success(function(data){
+                console.log('Profile pic I get',data);
+                $scope.profilePic = data;
+            });
+    }
+    
+    $scope.changePic = function(){
+        var form = {};
+        $http.post('/changeProfilePic',{}).success(function(data){
+            $scope.getProfilePic();      
+        });
+    }
+    
+    $scope.follow = function(){
+        var form = {username:username};
+        $http.post('/follow',form).success(function(data){
+            console.info('Followed');
+            $scope.following = !$scope.following;
+        });
+    }
+    
+    $http.post('/getUserObject',{username:'req'}).success(function(user){
+        
     });
+    
 });
 
 profileApp.controller("MenuController",function($scope,$http){
@@ -165,13 +212,31 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
     /*
         -Funkcija za like-anje zadatka
     */
+    $scope.setLikes = function(id){
+                console.warn('Set likes function');
+                var s = id.split('-');
+				for(var i=0;i<$scope.usersTasks.length;i++){
+                    if($scope.usersTasks[i].title == s[1]){
+                        
+                        console.log('Users tasks[i]',$scope.usersTasks[i],'usersTaks',$scope.usersTasks,'ii',i);
+                        var index = i;
+                        $http.get('/loadTask/'+id).success(function(data){
+                            console.log('Start likes',$scope.likes);
+                            $scope.likes[s[1]] = data.likedBy.length;
+                            console.log('End likes',$scope.likes);
+                        });
+                    }
+                }
+			}
+    
 	$scope.likeTask = function(id){
 		$http.get('/likeTask/'+id+'-'+loggedInUser).success(function(data){
 			console.log('Task liked',data);
 			$scope.likes[id.split('-')[0]] = data; 
 			$scope.liked[id.split('-')[1]] = !$scope.liked[id.split('-')[1]];
 			console.log($scope.liked);
-			$scope.$broadcast('likeEvent');
+//			$scope.$broadcast('likeEvent');
+            $scope.setLikes(id);
 		});
 	}
     /*
@@ -234,54 +299,3 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
     }
     
 });
-
-//directives
-profileApp.directive('ngLike',function(){
-	return {
-		restrict:'A',
-		scope:{
-			ngTaskId:'@'
-		},
-		template:'<label>Likes:{{likes}}</label>',
-		controller:['$scope','$http',function($scope,$http){
-			//Do the controller here
-			$scope.setLikes = function(id){
-				$http.get('/loadTask/'+id).success(function(data){
-					$scope.likes = data.likedBy.length;
-				});
-			}
-			$scope.$on('likeEvent',function(){
-				console.log('This is like event');
-				$scope.setLikes($scope.ngTaskId);
-			});
-		}],
-		link: function(scope,iElement,iAttrs,ctrl){
-			scope.setLikes(iAttrs.ngTaskId);
-			scope.$watch('likes',function(newVal){
-				console.log('I noticed the change',newVal);
-			});
-		}
-	}
-});
-
-profileApp.directive('ngTaskId',function(){
-	return {
-		controller:function($scope){}
-	}
-});
-
-profileApp.directive('ngLikeButton',function(){
-	return{
-		restrict:'A',
-		scope:{
-			ngTaskId:"@"
-		},
-		link: function(scope,iElement){
-			iElement.bind('click',function(e){
-				// angular.element(e.target).siblings('#'+scope.ngTaskId).trigger();
-				// scope.$broadcast('likeEvent');
-			});
-		},
-	}
-});
-

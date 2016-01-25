@@ -9,7 +9,7 @@
             <div class="col-sm-11 col-md-11 col-lg-11">
             <h2>{{task.title + ' -'}} <a href="/{{task.author}}">{{task.author}}    </a></h2>
 
-            <h4>{{task.date|date:'medium'}}</h4>
+            <h4>{{task.date|date:'shortDate'}}</h4>
 
             <!-- <h3>{{desc}}</h3> -->
             <div ng-bind-html="'<h3>'+task.desc+'</h3>'"></div>
@@ -29,7 +29,9 @@
                 <!-- {{'HAJOOO'+ liked[task.title]}} -->
                 <button class="btn btn-default" ng-click="showComments[task.author + '-' + task.title] = !showComments[task.author + '-' + task.title]">Read comments</button>
                 
-                <div ng-like ng-task-id="{{task.author + '-' + task.title}}"></div>
+<!--                <div ng-like ng-task-id="{{task.author + '-' + task.title}}"></div>-->
+                
+            <label>Likes:{{likes[task.title]}}</label>
                 
             </div>
                 
