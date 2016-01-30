@@ -6,11 +6,7 @@
 		<title>Search results</title>
 	</head>
 	<body>
-		<%if(toShow.length != 0){%>
-			<h1>Search results for: <%=title%></h1>
-		<%}else{%>
-			<h1>No results found for: <%=title%></h1>
-		<%}%>
+        
 		
 		<%for(var i=0;i<toShow.length;i++){%>
 			<a href="/<%=toShow[i].name%>"><h2><%=toShow[i].name%></h2></a>

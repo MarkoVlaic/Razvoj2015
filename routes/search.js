@@ -113,7 +113,8 @@ router.post('/search',function(req,res){
     	
 		});
 		console.log(toShow)
-		res.send(toShow)
+//		res.send(toShow)
+        res.render('search',{toShow:toShow});
 		
 })
 	

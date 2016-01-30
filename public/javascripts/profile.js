@@ -28,6 +28,7 @@ profileApp.controller('navController',function($scope,$http){
     $scope.search = function(){
         var toSearch = document.getElementById('search').value;
         $http.post('/search',{search:toSearch}).success(function(data){
+//            
             $scope.searchResults = data;
         });
     }
@@ -298,4 +299,24 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
         });
     }
     
+});
+
+/*Homepage generation*/
+profileApp.controller('NewsController',function($scope,$http){
+    $scope.news = []
+	$http.post('/loadHomepageData').success(function(data){
+		angular.forEach(data,function(task){
+            $http.get('/loadTask/'+task).success(function(t){
+                $scope.news.push(t);
+                console.log(t);
+            });
+        });
+	});
+    
+    function calculateDayOffset(date)
+    {
+        var dayFormula = 1000*60*60*24;
+        return Math.round(new Date().getTime()/dayFormula - date.getTime()/dayFormula);
+    }
+	// $scope.news = ['Im data'];
 });

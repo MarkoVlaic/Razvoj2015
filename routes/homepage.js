@@ -31,13 +31,13 @@ Array.isTaskInList = function(task,array){
 	return res;
 }
 
-router.get('/homepage',function(req,res){
-	// var d = generateHomepageData(req);
-	// d.forEach(function(task){
-	// 	tasks.push(task);
-	// });
-//	res.render('homepage',{});
-});
+//router.get('/homepage',function(req,res){
+//	// var d = generateHomepageData(req);
+//	// d.forEach(function(task){
+//	// 	tasks.push(task);
+//	// });
+////	res.render('homepage',{});
+//});
 
 router.post('/loadHomepageData',function(req,res){
 	// d = generateHomepageData(req.body.news,req.user[0].username);
@@ -81,7 +81,11 @@ function generateHomepageData(news,username,callback)
                     if(err) throw err;
                     console.log('dataUser',dataUser);
                     if(dataUser != null && typeof(dataUser) != 'undefined'){
-                        sendData.push(dataUser);
+                        dataUser.usersTasks.forEach(function(task){
+                            if(news.indexOf(task) == -1 && sendData.indexOf(task) == -1){
+                                sendData.push(task);
+                            }
+                        });
                     }
                     if(index1 == toSearch.length - 1 && index2 == user[property].length - 1){ 
                         console.log('data Im sending',sendData);
@@ -96,11 +100,6 @@ function generateHomepageData(news,username,callback)
     
 }
 
-function calculateDayOffset(date)
-{
-	var dayFormula = 1000*60*60*24;
-	return Math.round(new Date().getTime()/dayFormula - date.getTime()/dayFormula);
-}
 
 function generateUsernameArray(object)
 {

@@ -27,7 +27,7 @@ router.get('/:username',function(req,res){
         res.redirect('/');
         process.env.message = 'Please log in to view the requested profile';
       }else if(req.params.username == 'homepage'){
-        
+        res.render('homepage');
       }else{
       mongoose.model('users').findOne({username:req.params.username},function(err,user){
       if(err) throw err;

@@ -10,14 +10,16 @@
 		<title>Homepage</title>
 	</head>
 	<body ng-controller="NewsController">
-		<div class="task" ng-repeat="feed in news">	
-			<div class="row">
-				<div class="col-sm-12 col-md-12 col-lg-12">
-					<h2>{{feed.title + ' -'}} <a href="/{{feed.author}}">{{feed.author}}</a></h2>
-					<h4>{{task.date|date:'medium'}}</h4>
-					<h3>{{task.desc}} </h3>
-				</div>
-			</div>  
-		</div>
+        <div class="container-fluid">
+            <div class="task" ng-repeat="feed in news">	
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <h2>{{feed.title + ' -'}} <a href="/{{feed.author}}">{{feed.author}}</a></h2>
+                        <h4>{{feed.date|date:'medium'}}</h4>
+                        <h3>{{feed.desc}} </h3>
+                    </div>
+                </div>  
+            </div>
+        </div>
 	</body>
 </html>
