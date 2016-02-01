@@ -5,6 +5,7 @@ homepageApp.controller('NewsController',function($scope,$http){
 	$http.post('/loadHomepageData').success(function(data){
 		angular.forEach(data,function(task){
             $http.get('/loadTask/'+task).success(function(t){
+                //TODO: Zavrsiti provjeravanje vremenske razlike
                 $scope.news.push(t);
                 console.log(t);
             });

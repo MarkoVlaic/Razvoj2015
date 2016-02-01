@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html ng-app="ProfileApp">
-	<head></head>
+	<head>
+        <style>
+            textarea{
+                border-width: 0px;
+                border-bottom: 2px solid rgb(223, 223, 210);
+                width:50%;
+                height:10%;
+                resize:none;
+                font-size: 15px;
+                margin-bottom :2%;
+            }
+            textarea:focus{
+                outline:0px;
+            }
+        </style>
+    </head>
 	<body>
 		<div class="container-fluid" ng-controller="UploadController">
 			<div class="row">
@@ -14,6 +29,7 @@
 							<input type="hidden" name="info" 
 							value="{{task.title}}-{{task.author}}">
 							<input type="file" name="fileUpload">
+                            <textarea placeholder="Solution description" resize="false" name="description"></textarea>
 							<input type="submit" class="btn btn-default" value="Upload">
 						</form>
 					</div>

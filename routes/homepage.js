@@ -9,27 +9,6 @@ var async = require('async');
 tasks = [];
 var resPerLoad = 10;
 
-Array.cleanSame = function(a){
-	res = [];
-	a.forEach(function(i){
-		if(res.indexOf(i) == -1){
-			res[res.length] = i;
-		}
-	});
-
-	return res;
-}
-
-Array.isTaskInList = function(task,array){
-	var res = false;
-	array.forEach(function(i){
-		if(task.title == i.title){
-			res = true;
-			return
-		}
-	});
-	return res;
-}
 
 //router.get('/homepage',function(req,res){
 //	// var d = generateHomepageData(req);
@@ -39,11 +18,14 @@ Array.isTaskInList = function(task,array){
 ////	res.render('homepage',{});
 //});
 
+
+//Route za vuci podatke
 router.post('/loadHomepageData',function(req,res){
 	// d = generateHomepageData(req.body.news,req.user[0].username);
 	var d = null;
 	generateHomepageData([],req.user[0].username,function(data){
 		console.log('Data',data);
+        //Posalji generirane podatke
 		d = data;
 		data.reverse()
 		res.send(data);
@@ -59,62 +41,56 @@ router.post('/loadHomepageData',function(req,res){
 });	
 
 var counter = 0;
-//var monthOffset = 0;
+//Ovo ti treba dolje
 var dayOffset = 1;
-
 
 function generateHomepageData(news,username,callback)
 {
 	var sendData = [];
-	var maxDayOffset = 10;
-	
+	//Kolekcije koje algoritam pretrazuje iz user objekta
 	var toSearch = ['following','followers'];
     
     
     mongoose.model('users').findOne({username:username},function(err,user){
         if(err) throw err;
+        //Porlazi kroz sve sto je potrebno provjeriti
         toSearch.forEach(function(property,index1){
             console.log('This is property',property,'and data',user[property]);
+            //Uzmi svakog usera iz te kolekcije
             user[property].forEach(function(data,index2){
                 console.log('ringispil',data);
                 mongoose.model('users').findOne({username:data},function(err,dataUser){
                     if(err) throw err;
                     console.log('dataUser',dataUser);
                     if(dataUser != null && typeof(dataUser) != 'undefined'){
+                        //Ako taj user postoji(dodano samo zbog sigurnosti to se ne bi trebalo dogadati)
+//prodi kroz sve zadatke                       
                         dataUser.usersTasks.forEach(function(task){
+                            //TODO: U ovaj if staviti uvjete vezane uz vremensku razliku
                             if(news.indexOf(task) == -1 && sendData.indexOf(task) == -1){
                                 sendData.push(task);
                             }
                         });
                     }
+                    //Ovo je kraj obje petlje
                     if(index1 == toSearch.length - 1 && index2 == user[property].length - 1){ 
                         console.log('data Im sending',sendData);
+                        //TODO: Prvo provjeriti je li sendData.length manji od 10 i ako je napuniti ga sa random zadatcima
+                        //Salje sendData dalje
                         callback(sendData);
                     }
                 });
             });
         });
-    }).then(function(){
-        console.error('Mongoose query end');
-    }); 
-    
+    });
 }
 
-
-function generateUsernameArray(object)
+//Funkcija koja vraca razliku u danima izmedu dva datuma
+function calculateDayOffset(date)
 {
-	var array = [];
-	object.forEach(function(item){
-		array.push(item.username);
-	});
-cd
-	return array;
+    var dayFormula = 1000*60*60*24;
+    return Math.round(new Date().getTime()/dayFormula - date.getTime()/dayFormula);
 }
 
-
-function setResPerPage(i)
-{
-	resPerPage = i;
-}
 
 module.exports = router;
