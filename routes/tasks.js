@@ -34,7 +34,7 @@ router.post('/addTask',function(req,res){
 		if(err) throw err;
 		console.log('Task saved');	
 		//res.redirect('/getUsers');
-		res.redirect('/');
+		res.redirect('/'+req.user[0].username);
 	});
 
 });

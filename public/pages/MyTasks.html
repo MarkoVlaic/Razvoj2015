@@ -1,6 +1,5 @@
 
 <div ng-controller="MyTasksController">
-	
     <div ng-show="usersTasks.length == 0">
         <h4>No tasks yet</h4> 
     </div>
@@ -20,14 +19,32 @@
             <a href="/removeTask/{{task.title}}">Remove</a>
         </div>
         </div>
-        <div class="row">
-            <div class="col-sm-5 col-md-5 col-lg-5">	
-                <input class="btn btn-default add" type="submit" value="Solve" ng-show="solveList.indexOf(task.title + task.author) == -1 && authenticated == false" task="{{task}}" ng-click="addTask(task)">
-                <input class="btn btn-default add" type="submit" value="Remove from list" ng-show="solveList.indexOf(task.title + task.author) != -1" task="{{task}}" ng-click="addTask(task)">
-                <button class="btn btn-default" ng-show="authenticated == false && !liked[task.title]" ng-click="likeTask(task.author + '-' + task.title);sendNotification('like',task.author,'Task-'+task.title)" ng-like-button>Like</button><!-- <div ng-like ng-task-id="{{task.author + '-' + task.title}}"></div> -->
-                <button class="btn btn-default" ng-show="authenticated == false &&  liked[task.title]" ng-click="likeTask(task.author + '-' + task.title);" ng-like-button>Dislike</button>
+        <div class="row md-accent">
+            <div class="col-sm-5 col-md-5 col-lg-5 md-accent" ng-init = "hover = false">
+                <input class="btn btn-default add" type="submit" value="Solve" ng-show="solveList.indexOf(task.title + task.author) == -1 && solved.indexOf(task.title) == -1" task="{{task}}" ng-click="addTask(task)">
+                <input class="btn btn-default add" type="submit" value="Remove from list" ng-show="solveList.indexOf(task.title + task.author) != -1 && solved.indexOf(task.title) == -1" task="{{task}}" ng-click="addTask(task)">
+                <h5 ng-show="solved.indexOf(task.title) != -1" >Solved<span class="glyphicon glyphicon-ok "></span></h5>
+                
+                <button class="btn btn-default md-fab md-fab-top-left left" data-toggle = "popover" data-html="true" title="Liked  By" data-placement="bottom" data-content="AHAHAH<br>AHAHAHA"
+          data-trigger="hover"   ng-show="authenticated == false && !liked[task.title]" ng-click=" likeTask(task.author + '-' + task.title);sendNotification('like',task.author,'Task-'+task.title);" ng-mouseover = "hover = true" ng-mouseleave="hover=false" ng-like-button>
+                Like
+ 
+                <div ng-repeat = "n in task.likedBy" ng-show = "hover == true">
+                    <li>{{n}}</li>
+
+                </div> 
+                
+                </button>
+                
+                <!--<div ng-like ng-task-id="{{task.author + '-' + task.title}}"></div> -->
+                <button class="btn btn-default" ng-show="authenticated == false &&  liked[task.title]" ng-click="likeTask(task.author + '-' + task.title)" ng-mouseover = "hover = true" ng-mouseleave="hover=false" ng-like-button>Dislike
+                <div ng-repeat = "n in task.likedBy" ng-show = "hover == true">
+                    <li>{{n}}</li>
+
+                </div></button>
                 <!-- {{'HAJOOO'+ liked[task.title]}} -->
                 <button class="btn btn-default" ng-click="showComments[task.author + '-' + task.title] = !showComments[task.author + '-' + task.title]" id="commentBtn{{$index}}" ng-show="false">Read comments</button><label for="commentBtn{{$index}}">comments:{{task.comments.length}}</label>
+                
                 
 <!--                <div ng-like ng-task-id="{{task.author + '-' + task.title}}"></div>-->
                 
@@ -49,7 +66,7 @@
                     <div class="col-sm-10 col-md-12 col-lg-12">
                         <p><a href="{{comments[comment].author}}">
                             {{comments[comment].author}}    
-                        </a>{{comments[comment].content}}<span class="glyphicon glyphicon-remove" ng-show="comments[comment].author == loggedInUser" ng-click="removeComment(comment,task.author + '-' + task.title)"></span></p> 
+                        </a>{{comments[comment].content}} <span class="glyphicon glyphicon-remove" ng-show="comments[comment].author == loggedInUser" ng-click="removeComment(comment,task.author + '-' + task.title)"></span></p> 
                     </div>
                     
                 </div>

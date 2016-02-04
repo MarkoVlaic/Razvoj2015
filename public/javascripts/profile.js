@@ -106,7 +106,7 @@ profileApp.controller("SolutionsController",function($scope,$http,$sce){
 	var username = document.getElementById('username').value;
     $scope.showPreview = {};
 	$http.post('/getUserObject',{username}).success(function(data){
-		$scope.solutions = data.solved;
+		$scope.solutions = data.solved.reverse();
         angular.forEach($scope.solutions,function(solution){
             $scope.showPreview[solution] = false;
         });
@@ -153,6 +153,7 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
 	console.log('username',username);
 	$scope.authenticated = false;
 	$scope.solveList = [];
+    $scope.solved = [];
     /*
         -Odrediti je li korisnik ulogiran, srediti listu 
         -Odrediti zadatke za dodavanje, odnosno micanje s liste
@@ -166,9 +167,15 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
 		}
 		for (var i = 0; i < data.tasksToSolve.length; i++) {
 			$scope.solveList.push(data.tasksToSolve[i].title + data.tasksToSolve[i].author);
-		};
+		}
+        for(var i=0;i<data.solved.length;i++){
+            $scope.solved.push(data.solved[i].split('-')[1]);
+            console.log('ZLO DOBA',$scope.solved);
+        }
 //		console.log('Solve list',$scope.solveList);
 	});
+    
+    
 	/*
     -Postaviti likeove i komentare za zadatke
     */

@@ -12,10 +12,6 @@ homepageApp.controller('NewsController',function($scope,$http){
         });
 	});
     
-    function calculateDayOffset(date)
-    {
-        var dayFormula = 1000*60*60*24;
-        return Math.round(new Date().getTime()/dayFormula - date.getTime()/dayFormula);
-    }
+   
 	// $scope.news = ['Im data'];
 });

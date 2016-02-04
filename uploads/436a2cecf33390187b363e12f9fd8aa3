@@ -1,0 +1,28 @@
+def calculateFromOps(ns,ops):
+  res = 0
+  lastNum = ns[0]
+  curOp = '+'
+  for i in range(len(ops)):
+    lastNum = ns[i]
+    curOp = ops[i]
+    print('curOp',curOp)
+    if curOp == '+':
+      res += lastNum
+    elif curOp == '-':
+      res -= lastNum
+    elif curOp == '*':
+      res *= lastNum
+    elif curOp == '/':
+      res += lastNum/ns[i]
+  return res
+
+ns = []
+ops = []
+operations = ['+','-','*','/']
+for i in range(6):
+  ns.append(int(input()))
+
+#same operations
+for i in range(4):
+  for _ in range(len(ns)-1):
+    ops.append(operations[i])

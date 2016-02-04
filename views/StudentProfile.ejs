@@ -23,6 +23,7 @@
 	    		padding-top:70px;
 	    	}
 	    </style>
+         <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <title><%= username %></title>
 	</head>
 	<body>
@@ -50,7 +51,7 @@
 <!--            <span>{{searchResults}}</span>-->
         </div>
         <button type="submit" class="btn btn-default" ng-click="null">Submit</button>
-          <div>{{searchResults}}</div>
+<!--          <div>{{searchResults}}</div>-->
       </form>
 
         
@@ -92,7 +93,7 @@
                     <input type="file" name="profilePicInput" id="profilePicInput" class="fileInput" ng-show="authenticated == true">
 					<label ng-show="authenticated == true" for="profilePicInput"><img id="profilePic" src="{{profilePic}}"></label>
                         
-                    <button type="submit">Change</button>
+                    <!--<button type="submit">Change</button>-->
                     </form>
 
                     <img id="profilePic" src="{{profilePic}}" ng-show="authenticated == false">

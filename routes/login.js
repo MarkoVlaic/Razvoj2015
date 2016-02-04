@@ -40,7 +40,7 @@ passport.deserializeUser(function(id,done){
 router.post('/login',function(req,res,next){
 		console.log('my function is running');
 		console.log('This username',req.body.username);
-		process.env.message = 'Invali username or password';
+		process.env.message = 'Invalid username or password';
 		return next();
 	},
 	passport.authenticate('local',{ failureRedirect: '/', failureFlash: true }),function(req,res){
