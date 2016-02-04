@@ -62,7 +62,7 @@
           <ul class="dropdown-menu">
 <!--              {{notifications}}-->
             <li ng-show="notifications.length == 0">No notifications yet</li>
-            <li ng-repeat="notification in notifications" ng-bind-html="notification.content"></li>
+            <li ng-repeat="notification in notifications track by $index" ng-bind-html="notification.content"></li>
           </ul>
         </li>
 <!--        <li><a href="/logout">Log out</a></li>-->
@@ -80,12 +80,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container-fluid">
-	<div class="row">
-        <div class="col-md-5">
-            <h5>Display results here</h5>
-        </div>
-    </div>	
+<div class="container-fluid">	
     <div class="row" style="margin-bottom:3px;" ng-controller="profileHeaderController" ng-init="getProfilePic()">
 				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5
 				">
@@ -118,6 +113,11 @@
 						<a href ng-click="activeTab = 'MyTasks'">My tasks
 						</a>
 					</li>
+                    
+                    <li ng-class="{active: activeTab == 'AboutMe'}">
+						<a href ng-click="activeTab = 'AboutMe'">About me
+						</a>
+					</li>
 
 					<!--<li ng-class="{active: activeTab == 'Favourites'}">
 						<a href ng-click="activeTab = 'Favourites'">Favourites
@@ -145,6 +145,11 @@
 						ng-show="activeTab == 'MyTasks'"
 						ng-include="'pages/MyTasks.html'"
 					></div>
+                    <div
+						ng-show="activeTab == 'AboutMe'"
+						ng-include="'pages/AboutMe.html'"
+					></div>
+                    
 					<div
 						ng-show="activeTab == 'Favourites'"
 						ng-include="'pages/Favourites.html'"

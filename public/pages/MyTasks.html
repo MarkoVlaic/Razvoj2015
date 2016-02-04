@@ -66,7 +66,7 @@
                     <div class="col-sm-10 col-md-12 col-lg-12">
                         <p><a href="{{comments[comment].author}}">
                             {{comments[comment].author}}    
-                        </a>{{comments[comment].content}} <span class="glyphicon glyphicon-remove" ng-show="comments[comment].author == loggedInUser" ng-click="removeComment(comment,task.author + '-' + task.title)"></span></p> 
+                        </a>{{comments[comment].content}} <span class="glyphicon glyphicon-remove" ng-show="comments[comment].author == loggedInUser" ng-click="removeComment(comment,task.author + '-' + task.title);"></span></p> 
                     </div>
                     
                 </div>
@@ -76,7 +76,7 @@
         <div class="row">
             <div class="col-sm-3 col-md-3 col-lg-2">
                 <input style="width:100%" type="text" id="{{task.author + '-' + task.title}}">
-                <button class="btn btn-default" ng-click="commentTask(task.author + '-' + task.title)">Comment</button>
+                <button class="btn btn-default" ng-click="commentTask(task.author + '-' + task.title);sendNotification('comment',task.author,'Task-'+task.title)">Comment</button>
             </div>
         </div>
             </div>

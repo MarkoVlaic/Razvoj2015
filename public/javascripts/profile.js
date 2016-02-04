@@ -297,6 +297,7 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
     }
     
     $scope.sendNotification = function(type,reciever,object){
+        console.log('Vuk je vuk');
         var sender = $scope.loggedInUser;
         var s = object.split('-')[0] == 'Task'? 'your ' + object.split('-')[1] +' task' : 'you'
         var content = '<a href="/' + sender + '">' + sender + '</a>' + ' - ' + type + 'd ' + s;
@@ -326,4 +327,8 @@ profileApp.controller('NewsController',function($scope,$http){
         return Math.round(new Date().getTime()/dayFormula - date.getTime()/dayFormula);
     }
 	// $scope.news = ['Im data'];
+});
+
+profileApp.controller("AboutMeController",function($scope,$http){
+    
 });
