@@ -154,6 +154,7 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
 	$scope.authenticated = false;
 	$scope.solveList = [];
     $scope.solved = [];
+    
     /*
         -Odrediti je li korisnik ulogiran, srediti listu 
         -Odrediti zadatke za dodavanje, odnosno micanje s liste
@@ -188,12 +189,14 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
 		$scope.likes = {};
 		$scope.liked = {};
         $scope.comments = {};
+        $scope.solveForm = {};
 		// console.log('Data.usersTasks'.data.usersTasks);
 		angular.forEach(data.usersTasks.reverse(),function(task){
 			console.log('Task',task);
             $scope.showComments[task] = false;
 			$http.get('/loadTask/'+task).success(function(t){
 				$scope.usersTasks.push(t);
+                $scope.solveForm[t.title] = false;
 				$scope.likes[t.title] = t.likedBy.length;
 				$scope.liked[t.title] = (t.likedBy.indexOf(loggedInUser) != -1);
 				angular.forEach(t.comments,function(c){
@@ -281,9 +284,11 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
             $scope.usersTasks = [];
             angular.forEach(data.usersTasks.reverse(),function(task){
                 $http.get('/loadTask/'+task).success(function(t){
+                    console.log("Loading a task",task.title );
                     $scope.usersTasks.push(t);
                 });
             });
+            console.log("Solve form",$scope.solveForm);
         });
     }
     

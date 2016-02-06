@@ -6,7 +6,7 @@
        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <!--       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
-         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/dropdown.js"></script>
+<!--         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/dropdown.js"></script>-->
         <script type="text/javascript">
             $(document).ready(function(){
                  $('.dropdown-toggle').dropdown();
@@ -130,8 +130,8 @@
 					</li>
 
 					<li ng-class="{active: activeTab == 'Upload'}" ng-show="authenticated==true">
-						<a href ng-click="activeTab = 'Upload';
-						">Upload task</a>
+						<a href ng-click="activeTab = 'Todo';
+						">TODO list</a>
 					</li>
 
 					<li ng-class="{active: activeTab == 'ViewSolutions'}">
@@ -159,8 +159,8 @@
 						ng-include="'pages/Create.html'"
 					></div>
 					<div
-						ng-show="activeTab == 'Upload'"
-						ng-include="'pages/Upload.html'"
+						ng-show="activeTab == 'Todo'"
+						ng-include="'pages/Todo.html'"
 					></div>
 					<div
 						ng-show="activeTab == 'ViewSolutions'"

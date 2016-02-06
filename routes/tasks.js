@@ -7,8 +7,16 @@ var taskSchema = require('../Schemas/taskSchema');
 console.log('taskSchema',taskSchema);
 var Task = mongoose.model('tasks',taskSchema);
 
+String.prototype.insert = function(index,s){
+    return this.slice(0,index) + s + this.slice(index,this.length);
+}
+
 router.post('/addTask',function(req,res){
 	req.body.desc = req.body.desc.replace(/\r?\n/g, '<br />');
+    var n = 350;
+    if(req.body.desc.length > n){
+        req.body.desc = req.body.desc.insert(n,"<readMore>").insert(req.body.desc.length+"<readMore>".length,"</readMore>");
+    }
 	var newTask = new Task({
 		title:req.body.title,
 		desc:req.body.desc,

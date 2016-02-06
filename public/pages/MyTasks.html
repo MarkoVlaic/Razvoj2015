@@ -21,7 +21,11 @@
         </div>
         <div class="row md-accent">
             <div class="col-sm-5 col-md-5 col-lg-5 md-accent" ng-init = "hover = false">
-                <input class="btn btn-default add" type="submit" value="Solve" ng-show="solveList.indexOf(task.title + task.author) == -1 && solved.indexOf(task.title) == -1" task="{{task}}" ng-click="addTask(task)">
+                <!--TODO: Staviti solve now funkcionalnost -->
+                <input type="submit" class="btn btn-default" value="Solve" data-toggle="fileForm+{{task.title}}" ng-show="solved.indexOf(task.title) == -1"></input>
+                    
+<!--                <div>Hello</div>-->
+                <input class="btn btn-default add" type="submit" value="Todo" ng-show="solveList.indexOf(task.title + task.author) == -1 && solved.indexOf(task.title) == -1" task="{{task}}" ng-click="addTask(task)">
                 <input class="btn btn-default add" type="submit" value="Remove from list" ng-show="solveList.indexOf(task.title + task.author) != -1 && solved.indexOf(task.title) == -1" task="{{task}}" ng-click="addTask(task)">
                 <h5 ng-show="solved.indexOf(task.title) != -1" >Solved<span class="glyphicon glyphicon-ok "></span></h5>
                 
@@ -75,7 +79,7 @@
             
         <div class="row">
             <div class="col-sm-3 col-md-3 col-lg-2">
-                <input style="width:100%" type="text" id="{{task.author + '-' + task.title}}">
+                <input style="width:100%" type="text" id="{{task.author + '-' + task.title}}" placeholder="Comment">
                 <button class="btn btn-default" ng-click="commentTask(task.author + '-' + task.title);sendNotification('comment',task.author,'Task-'+task.title)">Comment</button>
             </div>
         </div>

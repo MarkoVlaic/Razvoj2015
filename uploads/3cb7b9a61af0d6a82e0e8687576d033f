@@ -1,0 +1,20 @@
+#include <iostream>
+#include <stdio.h>
+
+using namespace std;
+
+int gcd(int a,int b){
+    int c;
+    while(a != 0){
+        c = a;a = b%a; b = c;
+    }
+    return b;
+}
+
+int main()
+{
+    int n,m;
+    scanf("%d %d",&n,&m);
+    cout << m - gcd(n,m);
+}
+
