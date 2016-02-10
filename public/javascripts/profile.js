@@ -335,5 +335,22 @@ profileApp.controller('NewsController',function($scope,$http){
 });
 
 profileApp.controller("AboutMeController",function($scope,$http){
-    
+    var username = document.getElementById("username").value;
+    $http.post('/getUserObject',{username:username}).success(function(data){
+        $scope.age = new Date().getFullYear() - data.birthYear;
+        $scope.country = data.country;
+        $scope.bio = data.bio;
+        $scope.fullName = data.name + ' ' + data.lastname;
+        console.log("Country",$scope.country);
+    });
+    $http.post('/getUserObject',{username:'req'}).success(function(data){
+        $scope.authenticated = (username == data.username);
+    });
+    $scope.saveBio = function(){
+        $scope.edit = false;
+        var bio = document.getElementById("bio").value;
+        $http.post('/changeBio',{bio:bio}).success(function(data){
+            $scope.bio = bio;
+        });
+    };
 });

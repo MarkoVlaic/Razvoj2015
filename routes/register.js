@@ -49,7 +49,9 @@ router.post('/register',function(req,res){
 			followers:[],
 			liked:[],
 			employees:[],
-            profilePic:undefined
+            profilePic:undefined,
+            country:req.body.country,
+            bio:"No information yet"
 			});
 		
 		newUser.save(function(err,userSaved){

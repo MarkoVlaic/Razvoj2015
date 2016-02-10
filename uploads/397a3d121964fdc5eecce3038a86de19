@@ -1,0 +1,11 @@
+a = list(map(int,input().replace(' ','').split(',')))
+x = 4
+n = 6
+
+res = 0
+
+for i in a:
+  if i % n == x:
+    res += i
+
+print(i)

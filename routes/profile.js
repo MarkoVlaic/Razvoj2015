@@ -126,4 +126,16 @@ router.post('/changeProfilePic',upload.array('profilePicInput',1),function(req,r
     
 });
 
+router.post('/changeBio',function(req,res){
+    req.body.bio = req.body.bio
+        .replace(/\r?\n/g, '<br />');
+    var condition = {username:req.user[0].username};
+    var update = {$set:{bio:req.body.bio}};
+    mongoose.model('users').update(condition,update,{},function(err,updated){
+        if(err) throw err;
+        console.log("User updated");
+        res.sendStatus(200);
+    });
+});
+
 module.exports = router;

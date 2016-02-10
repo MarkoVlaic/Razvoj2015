@@ -11,6 +11,9 @@
 	</head>
 	<body ng-controller="NewsController">
         <div class="container-fluid">
+            <div class="message" ng-show="news.length == 0">
+                <h1>Follow some users in order to have some tasks here</h1>
+            </div>
             <div class="task" ng-repeat="feed in news">	
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12">

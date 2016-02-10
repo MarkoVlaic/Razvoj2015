@@ -1,3 +1,39 @@
-<div ng-controller="AboutMeController">
-    
+<div ng-controller="AboutMeController" ng-init="edit=false">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <h2 style="">{{fullName}}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-s-12 col-md-12 col-lg-12">
+            <h3>Country: {{country}}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-s-12 col-md-12 col-lg-12">
+            <h3>Age: {{age}}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-s-12 col-md-12 col-lg-12">
+            <h2>Bio</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-11 col-md-11 col-lg-9">
+            <h4 ng-show="edit == false">{{bio}}</h4>
+        </div>
+        <div class="col-sm-1 col-md-1 col-lg-1">
+            <span class="glyphicon glyphicon-pencil" ng-click="edit = true" ng-show="edit == false && authenticated == true"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10 col-md-10 col-lg-10">
+            <textarea class="form-control" id="bio" rows="5" id="bio" ng-show="edit == true" value="">{{bio}}</textarea>
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <button class="btn btn-info" ng-click="saveBio()" ng-show="edit == true">Save</button>
+            <button class="btn btn-info" ng-click="edit = false" ng-show="edit == true">Close</button>
+        </div>
+    </div>
 </div>

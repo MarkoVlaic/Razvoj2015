@@ -92,7 +92,8 @@
                     </form>
 
                     <img id="profilePic" src="{{profilePic}}" ng-show="authenticated == false">
-					<h1><%=name%> <%=lastname%></h1>
+<!--					<h1><%=name%> <%=lastname%></h1>-->
+                        <h1><%= username %></h1>
 				</div>
                 <div class="col-sm-1 col-md-1 col-lg-1" ng-show="authenticated == false">
                     <button class="btn btn-default" ng-click="follow()" ng-show="following == false">Follow</button>
