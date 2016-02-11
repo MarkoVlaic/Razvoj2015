@@ -1,0 +1,25 @@
+function e = CostFunction(theta1,theta2,trainingx,trainingy)
+    e = 0;
+    if ~isvector(trainingx) || ~isvector(trainingy)
+       error('Training parameters must be vectors'); 
+    end
+    if length(trainingx) ~= length(trainingy)
+        error('Training vectors must be the same size');
+    end
+    m = length(trainingx);
+    
+    for n=1:m
+        e = e + (hTheta(trainingx(n),theta1,theta2) - trainingy(n))^2;
+        disp(e)
+    end
+    
+    m = 2 * m;
+    
+    e = 1/m * e;
+    
+end
+
+%% hteta function
+function y = hTheta(x,theta1,theta2)
+    y = theta1 + x*theta2;
+end

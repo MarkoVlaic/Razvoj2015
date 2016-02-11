@@ -31,7 +31,7 @@ router.post('/uploadTask',upload.array('fileUpload',limit),function(req,res){
 	req.files.forEach(function(file){
 		// fs.unlink(file.path,function(err){
 			// if(err) throw err;
-		var saveString = 'Title-' + req.body.info.split('-')[0] + '-Filename-' + file.originalname + '-User-' + req.user[0].username;
+		var saveString = 'Title-' + req.body.info.split('-')[0] + '-Filename-' + file.originalname + '-User-' + req.user[0].username + '-Author-'+req.body.info.split('-')[1];
 		var writeStream = gfs.createWriteStream({filename:saveString,description:req.body.description});
 		fs.createReadStream(file.path).on('end',function(){
 			// Handle list of tasks to solve

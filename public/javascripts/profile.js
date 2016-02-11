@@ -105,10 +105,12 @@ profileApp.controller("UploadController",function($scope,$http){
 profileApp.controller("SolutionsController",function($scope,$http,$sce){
     var username = document.getElementById('username').value;
     $scope.showPreview = {};
+    $scope.showDescription = {};
     $http.post('/getUserObject',{username}).success(function(data){
         $scope.solutions = data.solved.reverse();
         angular.forEach($scope.solutions,function(solution){
             $scope.showPreview[solution] = false;
+            $scope.showDescription[solution] = false;
         });
     });
     $scope.indexFunction = function(l,i){
@@ -122,6 +124,7 @@ profileApp.controller("SolutionsController",function($scope,$http,$sce){
 
     $scope.files = {};
     $scope.trust = {};
+    $scope.descriptions = {};
     
     $scope.previewFile = function(id){
 //      console.log('Should preview file',id);
@@ -144,6 +147,15 @@ profileApp.controller("SolutionsController",function($scope,$http,$sce){
                 return $sce.trustAsHtml($scope.files[id]);
             } 
     };
+    
+    $scope.viewDescription = function(id){
+        console.log("id",id);
+        var sid = id.split('-')[7] + '-'+id.split('-')[1];
+        $http.get('/loadTask/'+sid).success(function(data){
+            $scope.descriptions[id] = data.desc;
+            console.log("data.desc",data.title);
+        });
+    }
 
 });
 
