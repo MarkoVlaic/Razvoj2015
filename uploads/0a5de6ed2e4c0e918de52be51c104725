@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+using namespace std;
+
+unsigned int a[1002][1002];
+int b,c;
+
+
+void update(int x,int y){
+    for(int i = x;i<b+1;i++){
+        for(int j = y;j<c+1;j++){
+            a[i][j]+=1;
+        }
+    }
+    //printf("\n");for(int i = 0;i<b+2;i++){for(int j = 0;j<c+2;j++) printf("%d ",a[i][j]); printf("\n");}
+}
+
+
+int main(){
+    scanf("%d %d",&b,&c);
+    //printf("%d %d",b,c);
+    for(int i = 1;i<b+1;i++){
+        int su = 0;
+        for(int j=1;j<c+1;j++){
+            int d;
+            scanf("%d",&d);
+            a[i][j]=d+su;
+            su+=d;
+            if(i>1) a[i][j]+=a[i-1][j];
+        }
+    }
+    int e;
+    scanf("%d",&e);
+    //printf("\n");for(int i = 0;i<b+2;i++){for(int j = 0;j<c+2;j++) printf("%d ",a[i][j]); printf("\n");}
+    for(int i=0;i<e;i++){
+        int u,x1,y1,x2,y2;
+        scanf("%d",&u);
+        if(u==1){
+            scanf("%d %d %d %d",&x1,&y1,&x2,&y2);
+            //printf("%da%da%da%da",x1,y1,x2,y2);
+            printf("%u\n",a[x2][y2]-a[x2][y1-1]-a[x1-1][y2]+a[x1-1][y1-1]);
+        }
+        else{
+            scanf("%d %d",&x1,&y1);
+            update(x1,y1);
+
+        }
+
+    }
+
+
+}

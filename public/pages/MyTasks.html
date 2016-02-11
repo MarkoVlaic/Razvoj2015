@@ -15,14 +15,14 @@
         </div>
 
 
-        <div ng-show="authenticated == true" class="col-sm-1 col-md-1 col-lg-1">
-            <a href="/removeTask/{{task.title}}">Remove</a>
+        <div  ng-show="authenticated == true" class="col-sm-1 col-md-1 col-lg-1 nosearch">
+            <a  href="/removeTask/{{task.title}}">Remove</a>
         </div>
         </div>
         <div class="row md-accent">
             <div class="col-sm-5 col-md-5 col-lg-5 md-accent" ng-init = "hover = false">
                 <!--TODO: Staviti solve now funkcionalnost -->
-                <input type="submit" class="btn btn-default" value="Solve" data-toggle="fileForm+{{task.title}}" ng-show="solved.indexOf(task.title) == -1"></input>
+<!--                <input type="submit" class="btn btn-default" value="Solve" data-toggle="fileForm+{{task.title}}" ng-show="solved.indexOf(task.title) == -1"></input>-->
                     
 <!--                <div>Hello</div>-->
                 <input class="btn btn-default add" type="submit" value="Todo" ng-show="solveList.indexOf(task.title + task.author) == -1 && solved.indexOf(task.title) == -1" task="{{task}}" ng-click="addTask(task)">

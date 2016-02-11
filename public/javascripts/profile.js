@@ -14,7 +14,7 @@ profileApp.controller('navController',function($scope,$http){
         
     var username = document.getElementById('username').value;
     $scope.authenticated = false;
-	$http.post('/getUserObject',{username:'req'}).success(function(data){
+    $http.post('/getUserObject',{username:'req'}).success(function(data){
             console.log('data.username',data.username,'username','i');
             if(data.username == username){
                 $scope.authenticated = true;
@@ -39,7 +39,7 @@ profileApp.controller('profileHeaderController',function($scope,$http){
     var username = document.getElementById('username').value;
    
     $scope.authenticated = false;
-	$http.post('/getUserObject',{username:'req'}).success(function(data){
+    $http.post('/getUserObject',{username:'req'}).success(function(data){
             console.log('data.username',data.username,'username','i');
             if(data.username == username){
                 $scope.authenticated = true;
@@ -81,52 +81,52 @@ profileApp.controller('profileHeaderController',function($scope,$http){
 });
 
 profileApp.controller("MenuController",function($scope,$http){
-	// $scope.activeTab = "Create";
-	// $scope.setTasksToSolve = tasksToSolve.setTasksToSolve;
-	// $scope.tasks = tasksToSolve.getTasksToSolve;
-	var username = document.getElementById('username').value;
-	var authenticated = false;
-	$http.post('/getUserObject',{username:'req'}).success(function(data){
-//		console.log('data.username',data.username);
-		if(data.username == username){
-			$scope.authenticated = true;
-		}
+    // $scope.activeTab = "Create";
+    // $scope.setTasksToSolve = tasksToSolve.setTasksToSolve;
+    // $scope.tasks = tasksToSolve.getTasksToSolve;
+    var username = document.getElementById('username').value;
+    var authenticated = false;
+    $http.post('/getUserObject',{username:'req'}).success(function(data){
+//      console.log('data.username',data.username);
+        if(data.username == username){
+            $scope.authenticated = true;
+        }
         });
 });
 
 profileApp.controller("UploadController",function($scope,$http){
-	var username = document.getElementById('username').value;
-	$http.post('/getUserObject',{username:username}).success(function(data){
-		$scope.tasksToSolve = data.tasksToSolve;
-//		console.log('data',data.tasksToSolve);
+    var username = document.getElementById('username').value;
+    $http.post('/getUserObject',{username:username}).success(function(data){
+        $scope.tasksToSolve = data.tasksToSolve;
+//      console.log('data',data.tasksToSolve);
         });
     });
 
 profileApp.controller("SolutionsController",function($scope,$http,$sce){
-	var username = document.getElementById('username').value;
+    var username = document.getElementById('username').value;
     $scope.showPreview = {};
-	$http.post('/getUserObject',{username}).success(function(data){
-		$scope.solutions = data.solved.reverse();
+    $http.post('/getUserObject',{username}).success(function(data){
+        $scope.solutions = data.solved.reverse();
         angular.forEach($scope.solutions,function(solution){
             $scope.showPreview[solution] = false;
         });
-	});
-	$scope.indexFunction = function(l,i){
-		return l.indexOf(i);
-	}
+    });
+    $scope.indexFunction = function(l,i){
+        return l.indexOf(i);
+    }
 
-	$scope.splitFunction = function(s,sep){
-//		console.log('s',s);
-		return s.split(sep);
-	}
+    $scope.splitFunction = function(s,sep){
+//      console.log('s',s);
+        return s.split(sep);
+    }
 
-	$scope.files = {};
+    $scope.files = {};
     $scope.trust = {};
     
-	$scope.previewFile = function(id){
-//		console.log('Should preview file',id);
-		$http.post('/preview',{name:id}).success(function(data){
-			console.log('Data I get is',data);
+    $scope.previewFile = function(id){
+//      console.log('Should preview file',id);
+        $http.post('/preview',{name:id}).success(function(data){
+            console.log('Data I get is',data);
             var output = '';
             var s = '';
             for(var i=0;i<data.length;i++){
@@ -137,96 +137,96 @@ profileApp.controller("SolutionsController",function($scope,$http,$sce){
                     s = '';
                 }
             }
-//			$scope.files[id] = '<pre><code class="python">' + data + '</code></pre>';
+//          $scope.files[id] = '<pre><code class="python">' + data + '</code></pre>';
             $scope.files[id] = data;
-		});
+        });
         $scope.trust[id] = function(){
                 return $sce.trustAsHtml($scope.files[id]);
             } 
-	};
+    };
 
 });
 
 profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
-	var username = document.getElementById('username').value;
-	var loggedInUser = '';
-	console.log('username',username);
-	$scope.authenticated = false;
-	$scope.solveList = [];
+    var username = document.getElementById('username').value;
+    var loggedInUser = '';
+    console.log('username',username);
+    $scope.authenticated = false;
+    $scope.solveList = [];
     $scope.solved = [];
     
     /*
         -Odrediti je li korisnik ulogiran, srediti listu 
         -Odrediti zadatke za dodavanje, odnosno micanje s liste
     */
-	$http.post('/getUserObject',{username:'req'}).success(function(data){
-//		console.log('data.username',data.username);
-		loggedInUser = data.username;
-		$scope.loggedInUser = loggedInUser;
-		if(data.username == username){
-			$scope.authenticated = true;
-		}
-		for (var i = 0; i < data.tasksToSolve.length; i++) {
-			$scope.solveList.push(data.tasksToSolve[i].title + data.tasksToSolve[i].author);
-		}
+    $http.post('/getUserObject',{username:'req'}).success(function(data){
+//      console.log('data.username',data.username);
+        loggedInUser = data.username;
+        $scope.loggedInUser = loggedInUser;
+        if(data.username == username){
+            $scope.authenticated = true;
+        }
+        for (var i = 0; i < data.tasksToSolve.length; i++) {
+            $scope.solveList.push(data.tasksToSolve[i].title + data.tasksToSolve[i].author);
+        }
         for(var i=0;i<data.solved.length;i++){
             $scope.solved.push(data.solved[i].split('-')[1]);
             console.log('ZLO DOBA',$scope.solved);
         }
-//		console.log('Solve list',$scope.solveList);
-	});
+//      console.log('Solve list',$scope.solveList);
+    });
     
     
-	/*
+    /*
     -Postaviti likeove i komentare za zadatke
     */
     $scope.showComments = {};
     
-	$http.post('/getUserObject',{username:username}).success(function(data){
-		console.log('usersTasks',data.usersTasks);
-		// $scope.usersTasks = data.usersTasks.reverse();
-		$scope.usersTasks = [];
-		$scope.likes = {};
-		$scope.liked = {};
+    $http.post('/getUserObject',{username:username}).success(function(data){
+        console.log('usersTasks',data.usersTasks);
+        // $scope.usersTasks = data.usersTasks.reverse();
+        $scope.usersTasks = [];
+        $scope.likes = {};
+        $scope.liked = {};
         $scope.comments = {};
         $scope.solveForm = {};
-		// console.log('Data.usersTasks'.data.usersTasks);
-		angular.forEach(data.usersTasks.reverse(),function(task){
-			console.log('Task',task);
+        // console.log('Data.usersTasks'.data.usersTasks);
+        angular.forEach(data.usersTasks.reverse(),function(task){
+            console.log('Task',task);
             $scope.showComments[task] = false;
-			$http.get('/loadTask/'+task).success(function(t){
-				$scope.usersTasks.push(t);
+            $http.get('/loadTask/'+task).success(function(t){
+                $scope.usersTasks.push(t);
                 $scope.solveForm[t.title] = false;
-				$scope.likes[t.title] = t.likedBy.length;
-				$scope.liked[t.title] = (t.likedBy.indexOf(loggedInUser) != -1);
-				angular.forEach(t.comments,function(c){
+                $scope.likes[t.title] = t.likedBy.length;
+                $scope.liked[t.title] = (t.likedBy.indexOf(loggedInUser) != -1);
+                angular.forEach(t.comments,function(c){
                     console.log('Comment',c);
                     $http.get('/loadComment/'+c).success(function(d){
                         $scope.comments[c] = d;
                     });
                 });
                 
-			});
-		});
+            });
+        });
 //        $scope.$broadcast('commentEvent');
-	});
+    });
     /*
         -Funkcija za dodavanje zadatka na listu za rjesavanje
     */
-	$scope.addTask = function(task){
-		var parameters = {title:task.title,author:task.author};
-		console.log('These are the parameters',parameters);
-		$http.post('/addTaskToSolve',parameters).success(function(data){
-			$window.location.reload();
-		});
-	}
+    $scope.addTask = function(task){
+        var parameters = {title:task.title,author:task.author};
+        console.log('These are the parameters',parameters);
+        $http.post('/addTaskToSolve',parameters).success(function(data){
+            $window.location.reload();
+        });
+    }
     /*
         -Funkcija za like-anje zadatka
     */
     $scope.setLikes = function(id){
                 console.warn('Set likes function');
                 var s = id.split('-');
-				for(var i=0;i<$scope.usersTasks.length;i++){
+                for(var i=0;i<$scope.usersTasks.length;i++){
                     if($scope.usersTasks[i].title == s[1]){
                         
                         console.log('Users tasks[i]',$scope.usersTasks[i],'usersTaks',$scope.usersTasks,'ii',i);
@@ -238,18 +238,18 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
                         });
                     }
                 }
-			}
+            }
     
-	$scope.likeTask = function(id){
-		$http.get('/likeTask/'+id+'-'+loggedInUser).success(function(data){
-			console.log('Task liked',data);
-			$scope.likes[id.split('-')[0]] = data; 
-			$scope.liked[id.split('-')[1]] = !$scope.liked[id.split('-')[1]];
-			console.log($scope.liked);
-//			$scope.$broadcast('likeEvent');
+    $scope.likeTask = function(id){
+        $http.get('/likeTask/'+id+'-'+loggedInUser).success(function(data){
+            console.log('Task liked',data);
+            $scope.likes[id.split('-')[0]] = data; 
+            $scope.liked[id.split('-')[1]] = !$scope.liked[id.split('-')[1]];
+            console.log($scope.liked);
+//          $scope.$broadcast('likeEvent');
             $scope.setLikes(id);
-		});
-	}
+        });
+    }
     /*
         -Funkcija za komentiranje zadatka
     */
@@ -317,21 +317,21 @@ profileApp.controller('MyTasksController',function($scope,$http,$sce,$window){
 /*Homepage generation*/
 profileApp.controller('NewsController',function($scope,$http){
     $scope.news = []
-	$http.post('/loadHomepageData').success(function(data){
-		angular.forEach(data,function(task){
+    $http.post('/loadHomepageData').success(function(data){
+        angular.forEach(data,function(task){
             $http.get('/loadTask/'+task).success(function(t){
                 $scope.news.push(t);
                 console.log(t);
             });
         });
-	});
+    });
     
     function calculateDayOffset(date)
     {
         var dayFormula = 1000*60*60*24;
         return Math.round(new Date().getTime()/dayFormula - date.getTime()/dayFormula);
     }
-	// $scope.news = ['Im data'];
+    // $scope.news = ['Im data'];
 });
 
 profileApp.controller("AboutMeController",function($scope,$http){

@@ -101,7 +101,8 @@ router.post('/search',function(req,res){
 			}
 			console.log(users[i].name,p,toShow)
 			
-            if(p != 0){
+            if(p != 0 && toShow.indexOf({name:users[i].username,type:users[i].type,perc:p
+                })){
                 toShow.push(
                  {name:users[i].username,type:users[i].type,perc:p
                 });

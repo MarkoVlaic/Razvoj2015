@@ -6,23 +6,99 @@
 	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
 	    </script>
 	    <script src="javascripts/homepage.js"></script>
+	    		<script src="javascripts/sanitize.js"></script>
+
+
+
 
 		<title>Homepage</title>
 	</head>
-	<body ng-controller="NewsController">
-        <div class="container-fluid">
+
+	<body >
+	<div class="predict-items" style="
+        position: absolute;
+        left: 80%;
+        top: 8%;
+        width: 20%;
+        height: 100%;
+    
+        ">
+       </div>
+		<nav class="navbar navbar-default navbar-fixed-top" ng-controller="navController">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#toCollapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">WNP</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="toCollapse">
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" id="search" ng-keyup="search()" autocomplete="off" autocorrect="off">
+        </div>
+        <button type="submit" class="btn btn-default" ng-click="null">Submit</button>
+      </form>
+
+        
+        <ul class="nav navbar-nav navbar-right">
+        <li><a href="/{{loggedInUser}}">{{loggedInUser}}</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications <span class="badge">{{notifications.length}}</span></a>
+          <ul class="dropdown-menu">
+<!--              {{notifications}}-->
+            <li ng-show="notifications.length == 0">No notifications yet</li>
+            <li ng-repeat="notification in notifications" ng-bind-html="notification.content"></li>
+          </ul>
+        </li>
+<!--        <li><a href="/logout">Log out</a></li>-->
+        <li>
+            <a href="/">Homepage</a>
+        </li>
+        <li>
+            <form class="navbar-form" action="/logout" method="post">
+                <button class="btn btn-default navbar-btn" type="submit">Log out</button>
+            </form>    
+        </li>
+      </ul>
+        
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+        <div class="container-fluid" ng-controller="NewsController" style ="
+        																	margin-top:8%;
+        																	margin-left:8%;
+        																margin-right:8%;">
             <div class="message" ng-show="news.length == 0">
                 <h1>Follow some users in order to have some tasks here</h1>
             </div>
             <div class="task" ng-repeat="feed in news">	
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        <h2>{{feed.title + ' -'}} <a href="/{{feed.author}}">{{feed.author}}</a></h2>
+                        <h2 ng-click = "feed.more=!(feed.more)">{{feed.title + ' -'}} <a href="/{{feed.author}}">{{feed.author}}</a></h2>
                         <h4>{{feed.date|date:'medium'}}</h4>
-                        <h3>{{feed.desc}} </h3>
+                        
+                        <div ng-if="feed.more==false">
+            				<div ng-bind-html="'<h3 >'+feed.desc.substr(0,400)+'</h3>'"></div>
+            			</div>
+            			<div ng-if="feed.more==true">
+            				<div ng-bind-html="'<h3>'+feed.desc+'</h3>'"></div>
+
+            			</div>
+            			<!--<div ng-bind-html="'<h3>'+feed.desc.substr(0,400)+'</h3>'"></div>-->
+
                     </div>
                 </div>  
             </div>
         </div>
+        	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src="javascripts/buttons.js"></script>
 	</body>
 </html>

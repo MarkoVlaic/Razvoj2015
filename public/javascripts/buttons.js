@@ -1,3 +1,4 @@
+var clicked=false
 $(function(){
 	$('#follow').on('click',function(){
 		//post the request
@@ -42,7 +43,7 @@ $(function(){
 	//search
 	$('#search').keyup(search);	
 
-	$('#searchBtn').on('click',search);
+	$('#searchBtn').on('click',searchnav);
 
 	$('.predict').hide();
 
@@ -79,29 +80,72 @@ $(function(){
 
 	function search(e)
 	{
+		$('#nosearch').show();
+
 		console.log(e.target.type);
 		var parameters = {search:$('#search').val(),type:e.target.type};
-		$.get('/search',parameters,function(data){
-			// alert(data);
-			console.log(parameters.search.length);
-			if(data.length == 0 || parameters.search.length == 0){
-				console.log("Hide");
-				$('.predict').hide();
-			}else{
-				var items = $('predict-items').children();
+		console.log('ME SEARCH')
+		//*Ovo ide ovdje
+		if(parameters.search == ''){
+			$('.nosearch').show()
+
+			$('.predict-items').empty()
+			return;
+
+
+		}
+		else{
+			console.log(parameters.search)
+		$.post('/search',parameters,function(data){
+
+				$('.nosearch').hide()
+			
+				console.log(data)
+				var n=-1;
+				$('.predict-items').empty()
+				clicked=true;
+				if(clicked){$('.predict-items').append('<svg width="100%" height="100%"><rect width="100%" height="100%" style="fill:rgb(200,200,200);stroke-width:0;stroke:rgb(0,0,0)" /></svg>')}
+				for(var i = 0;i<data.length;i++){
+					var item = data[i];
+					n+=1;
+					if(item.perc>49 && clicked && n<8){
+						$('.predict-items').append('<p style="position:absolute; top:'+String(13*n+3+3)+'%; left:50%; font-size:15px">'+item.type+'</p><img  href="http://localhost:1337/'+ item.name +'" style="width:75px; height:75px; position:absolute; top:'+String(13*n+2)+'%; left:10%;" id="profilePic" src="images/noUser1.jpg" style=""><a href="http://localhost:1337/'+ item.name +'" style="position:absolute; top:'+String(13*n+3)+'%; left:50%; font-size:20px">'+item.name+'</a>');
+					}
+					else{
+						if(n == 0){
+							$('.nosearch').show()
+
+
+						}
+						break;
+
+					}
+
+				}
 				
-				console.log("Items",items);
-				data.forEach(function(item){
-					$('.predict-items').append('<li>'+item.name+'</li>');
-				});
 				
-				// $('.predict').show();
-			}
+				
+			
 
 			if(parameters.type != "text"){
-				window.location = "/searchPage"
+				window.location = "/a"
 			}
-		});	
+		});
+	}
+		//*	
+	}
+	function searchnav(){
+		clicked=false;
+		if(clicked){
+			$('.predict-items').empty()
+			clicked=false
+		}
+		else{
+			$('.predict-items').append('<svg width="100%" height="100%"><rect width="100%" height="100%" style="fill:rgb(200,200,200);stroke-width:3;stroke:rgb(200,200,200);animation-name:pop;animation-duation:2s;" /></svg>')
+			clicked=true
+			search()
+
+		}
 	}
 
 });

@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+//var bcrypt = require('bcrypt');
 
 //authentication middleware
 var passport = require('passport');
@@ -14,7 +15,7 @@ passport.use(new passportLocal.Strategy(function(username,password,done){
 		if(err) throw err;
 		console.log('length',user.length);
 		if(user.length != 0){
-			if(password === user[0].password){
+			if(password == user[0].password){
 				done(null,{id:user[0]._id,username:username});
 			}else{
 				done(null,null);

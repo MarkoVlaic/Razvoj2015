@@ -1,0 +1,561 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'i',
+1 verbose cli   'bcrypt',
+1 verbose cli   '--python' ]
+2 info using npm@2.10.1
+3 info using node@v0.12.4
+4 verbose install initial load of C:\Users\ASUS\Desktop\AAa\Razvoj2015\package.json
+5 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\angular\package.json
+6 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\async\package.json
+7 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\body-parser\package.json
+8 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\connect-multiparty\package.json
+9 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\cookie-parser\package.json
+10 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\crypto\package.json
+11 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\debug\package.json
+12 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\ejs\package.json
+13 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\express\package.json
+14 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\express-session\package.json
+15 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\gridfs\package.json
+16 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\gridfs-stream\package.json
+17 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\mongoose\package.json
+18 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\mongoose-search-plugin\package.json
+19 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\morgan\package.json
+20 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\multer\package.json
+21 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\node-gyp\package.json
+22 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\passport\package.json
+23 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\passport-http\package.json
+24 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\passport-local\package.json
+25 verbose installManyTop reading scoped package data from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\serve-favicon\package.json
+26 info package.json passport-local@1.0.0 No license field.
+27 info package.json passport-http@0.2.2 No license field.
+28 info package.json crypto@0.0.3 crypto is also the name of a node core module.
+29 info package.json crypto@0.0.3 No license field.
+30 info package.json gridfs-stream@1.1.1 No license field.
+31 verbose readDependencies loading dependencies from C:\Users\ASUS\Desktop\AAa\Razvoj2015\package.json
+32 silly cache add args [ 'bcrypt', null ]
+33 verbose cache add spec bcrypt
+34 silly cache add parsed spec { raw: 'bcrypt',
+34 silly cache add   scope: null,
+34 silly cache add   name: 'bcrypt',
+34 silly cache add   rawSpec: '',
+34 silly cache add   spec: '*',
+34 silly cache add   type: 'range' }
+35 silly addNamed bcrypt@*
+36 verbose addNamed "*" is a valid semver range for bcrypt
+37 silly addNameRange { name: 'bcrypt', range: '*', hasData: false }
+38 silly mapToRegistry name bcrypt
+39 silly mapToRegistry using default registry
+40 silly mapToRegistry registry https://registry.npmjs.org/
+41 silly mapToRegistry uri https://registry.npmjs.org/bcrypt
+42 verbose addNameRange registry:https://registry.npmjs.org/bcrypt not in flight; fetching
+43 verbose request uri https://registry.npmjs.org/bcrypt
+44 verbose request no auth needed
+45 info attempt registry request try #1 at 19:24:39
+46 verbose request id 6a2f802c2c298b84
+47 verbose etag "1R6IPG6QUMP0IY6OSUM2DH2SH"
+48 http request GET https://registry.npmjs.org/bcrypt
+49 http 304 https://registry.npmjs.org/bcrypt
+50 silly get cb [ 304,
+50 silly get   { date: 'Wed, 10 Feb 2016 18:24:45 GMT',
+50 silly get     via: '1.1 varnish',
+50 silly get     'cache-control': 'max-age=300',
+50 silly get     etag: '"1R6IPG6QUMP0IY6OSUM2DH2SH"',
+50 silly get     age: '251',
+50 silly get     connection: 'keep-alive',
+50 silly get     'x-served-by': 'cache-fra1247-FRA',
+50 silly get     'x-cache': 'HIT',
+50 silly get     'x-cache-hits': '1',
+50 silly get     'x-timer': 'S1455128685.082171,VS0,VE0',
+50 silly get     vary: 'Accept' } ]
+51 verbose etag https://registry.npmjs.org/bcrypt from cache
+52 verbose get saving bcrypt to C:\Users\ASUS\AppData\Roaming\npm-cache\registry.npmjs.org\bcrypt\.cache.json
+53 silly addNameRange number 2 { name: 'bcrypt', range: '*', hasData: true }
+54 silly addNameRange versions [ 'bcrypt',
+54 silly addNameRange   [ '0.1.2',
+54 silly addNameRange     '0.2.0',
+54 silly addNameRange     '0.2.1',
+54 silly addNameRange     '0.1.3',
+54 silly addNameRange     '0.2.2',
+54 silly addNameRange     '0.2.3',
+54 silly addNameRange     '0.2.4',
+54 silly addNameRange     '0.3.0',
+54 silly addNameRange     '0.3.1',
+54 silly addNameRange     '0.3.2',
+54 silly addNameRange     '0.4.0',
+54 silly addNameRange     '0.4.1',
+54 silly addNameRange     '0.5.0',
+54 silly addNameRange     '0.6.0',
+54 silly addNameRange     '0.7.0',
+54 silly addNameRange     '0.7.1',
+54 silly addNameRange     '0.7.2',
+54 silly addNameRange     '0.7.3',
+54 silly addNameRange     '0.7.4',
+54 silly addNameRange     '0.7.5',
+54 silly addNameRange     '0.7.6',
+54 silly addNameRange     '0.7.7',
+54 silly addNameRange     '0.7.8',
+54 silly addNameRange     '0.8.0',
+54 silly addNameRange     '0.8.1',
+54 silly addNameRange     '0.8.2',
+54 silly addNameRange     '0.8.3',
+54 silly addNameRange     '0.8.4',
+54 silly addNameRange     '0.8.5' ] ]
+55 silly addNamed bcrypt@0.8.5
+56 verbose addNamed "0.8.5" is a plain semver version for bcrypt
+57 silly cache afterAdd bcrypt@0.8.5
+58 verbose afterAdd C:\Users\ASUS\AppData\Roaming\npm-cache\bcrypt\0.8.5\package\package.json not in flight; writing
+59 verbose afterAdd C:\Users\ASUS\AppData\Roaming\npm-cache\bcrypt\0.8.5\package\package.json written
+60 silly install resolved [ { name: 'bcrypt',
+60 silly install resolved     description: 'A bcrypt library for NodeJS.',
+60 silly install resolved     keywords:
+60 silly install resolved      [ 'bcrypt',
+60 silly install resolved        'password',
+60 silly install resolved        'auth',
+60 silly install resolved        'authentication',
+60 silly install resolved        'encryption',
+60 silly install resolved        'crypt',
+60 silly install resolved        'crypto' ],
+60 silly install resolved     main: './bcrypt',
+60 silly install resolved     version: '0.8.5',
+60 silly install resolved     author: { name: 'Nick Campbell', url: 'https://github.com/ncb000gt' },
+60 silly install resolved     engines: { node: '>= 0.6.0' },
+60 silly install resolved     repository:
+60 silly install resolved      { type: 'git',
+60 silly install resolved        url: 'git+https://github.com/ncb000gt/node.bcrypt.js.git' },
+60 silly install resolved     license: 'MIT',
+60 silly install resolved     bugs: { url: 'https://github.com/ncb000gt/node.bcrypt.js/issues' },
+60 silly install resolved     scripts:
+60 silly install resolved      { test: 'node-gyp configure build && nodeunit test',
+60 silly install resolved        install: 'node-gyp rebuild' },
+60 silly install resolved     dependencies: { bindings: '1.2.1', nan: '2.0.5' },
+60 silly install resolved     devDependencies: { nodeunit: '~0.9.1' },
+60 silly install resolved     contributors:
+60 silly install resolved      [ [Object],
+60 silly install resolved        [Object],
+60 silly install resolved        [Object],
+60 silly install resolved        [Object],
+60 silly install resolved        [Object],
+60 silly install resolved        [Object],
+60 silly install resolved        [Object],
+60 silly install resolved        [Object],
+60 silly install resolved        [Object],
+60 silly install resolved        [Object],
+60 silly install resolved        [Object],
+60 silly install resolved        [Object],
+60 silly install resolved        [Object],
+60 silly install resolved        [Object] ],
+60 silly install resolved     gypfile: true,
+60 silly install resolved     gitHead: '5d97708f06754d7d7989c67ba867002d10013615',
+60 silly install resolved     homepage: 'https://github.com/ncb000gt/node.bcrypt.js#readme',
+60 silly install resolved     _id: 'bcrypt@0.8.5',
+60 silly install resolved     _shasum: '8e5b81b4db80e944f440005979ca8d58a961861d',
+60 silly install resolved     _from: 'bcrypt@*',
+60 silly install resolved     _npmVersion: '2.13.3',
+60 silly install resolved     _nodeVersion: '3.0.0',
+60 silly install resolved     _npmUser: { name: 'defunctzombie', email: 'shtylman@gmail.com' },
+60 silly install resolved     dist:
+60 silly install resolved      { shasum: '8e5b81b4db80e944f440005979ca8d58a961861d',
+60 silly install resolved        tarball: 'http://registry.npmjs.org/bcrypt/-/bcrypt-0.8.5.tgz' },
+60 silly install resolved     maintainers: [ [Object], [Object], [Object], [Object] ],
+60 silly install resolved     directories: {},
+60 silly install resolved     _resolved: 'https://registry.npmjs.org/bcrypt/-/bcrypt-0.8.5.tgz',
+60 silly install resolved     readme: 'ERROR: No README data found!' } ]
+61 info install bcrypt@0.8.5 into C:\Users\ASUS\Desktop\AAa\Razvoj2015
+62 info installOne bcrypt@0.8.5
+63 verbose installOne of bcrypt to C:\Users\ASUS\Desktop\AAa\Razvoj2015 not in flight; installing
+64 verbose lock using C:\Users\ASUS\AppData\Roaming\npm-cache\_locks\bcrypt-4c94194242797124.lock for C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt
+65 silly install write writing bcrypt 0.8.5 to C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt
+66 verbose unbuild node_modules\bcrypt
+67 silly gentlyRm C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt is being purged from base C:\Users\ASUS\Desktop\AAa\Razvoj2015
+68 verbose gentlyRm don't care about contents; nuking C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt
+69 verbose tar unpack C:\Users\ASUS\AppData\Roaming\npm-cache\bcrypt\0.8.5\package.tgz
+70 verbose tar unpacking to C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt
+71 silly gentlyRm C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt is being purged
+72 verbose gentlyRm don't care about contents; nuking C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt
+73 silly gunzTarPerm modes [ '777', '666' ]
+74 silly gunzTarPerm extractEntry package.json
+75 silly gunzTarPerm modified mode [ 'package.json', 420, 438 ]
+76 silly gunzTarPerm extractEntry .npmignore
+77 silly gunzTarPerm modified mode [ '.npmignore', 420, 438 ]
+78 silly gunzTarPerm extractEntry README.md
+79 silly gunzTarPerm modified mode [ 'README.md', 420, 438 ]
+80 silly gunzTarPerm extractEntry LICENSE
+81 silly gunzTarPerm modified mode [ 'LICENSE', 420, 438 ]
+82 silly gunzTarPerm extractEntry bcrypt.js
+83 silly gunzTarPerm modified mode [ 'bcrypt.js', 420, 438 ]
+84 silly gunzTarPerm extractEntry binding.gyp
+85 silly gunzTarPerm modified mode [ 'binding.gyp', 420, 438 ]
+86 silly gunzTarPerm extractEntry .travis.yml
+87 silly gunzTarPerm modified mode [ '.travis.yml', 420, 438 ]
+88 silly gunzTarPerm extractEntry CHANGELOG.md
+89 silly gunzTarPerm modified mode [ 'CHANGELOG.md', 420, 438 ]
+90 silly gunzTarPerm extractEntry examples/async_compare.js
+91 silly gunzTarPerm modified mode [ 'examples/async_compare.js', 420, 438 ]
+92 silly gunzTarPerm extractEntry examples/forever_gen_salt.js
+93 silly gunzTarPerm modified mode [ 'examples/forever_gen_salt.js', 420, 438 ]
+94 silly gunzTarPerm extractEntry test/async.js
+95 silly gunzTarPerm modified mode [ 'test/async.js', 420, 438 ]
+96 silly gunzTarPerm extractEntry test/repetitions.js
+97 silly gunzTarPerm modified mode [ 'test/repetitions.js', 420, 438 ]
+98 silly gunzTarPerm extractEntry test/sync.js
+99 silly gunzTarPerm modified mode [ 'test/sync.js', 420, 438 ]
+100 silly gunzTarPerm extractEntry Makefile
+101 silly gunzTarPerm modified mode [ 'Makefile', 420, 438 ]
+102 silly gunzTarPerm extractEntry src/bcrypt.cc
+103 silly gunzTarPerm modified mode [ 'src/bcrypt.cc', 420, 438 ]
+104 silly gunzTarPerm extractEntry src/bcrypt_node.cc
+105 silly gunzTarPerm modified mode [ 'src/bcrypt_node.cc', 420, 438 ]
+106 silly gunzTarPerm extractEntry src/blowfish.cc
+107 silly gunzTarPerm modified mode [ 'src/blowfish.cc', 420, 438 ]
+108 silly gunzTarPerm extractEntry src/node_blf.h
+109 silly gunzTarPerm modified mode [ 'src/node_blf.h', 420, 438 ]
+110 silly gunzTarPerm extractEntry werker.yml
+111 silly gunzTarPerm modified mode [ 'werker.yml', 420, 438 ]
+112 verbose write writing to C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\package.json
+113 info preinstall bcrypt@0.8.5
+114 verbose readDependencies loading dependencies from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\package.json
+115 silly prepareForInstallMany adding bindings@1.2.1 from bcrypt dependencies
+116 silly prepareForInstallMany adding nan@2.0.5 from bcrypt dependencies
+117 verbose readDependencies loading dependencies from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\package.json
+118 silly cache add args [ 'bindings@1.2.1', null ]
+119 verbose cache add spec bindings@1.2.1
+120 silly cache add args [ 'nan@2.0.5', null ]
+121 verbose cache add spec nan@2.0.5
+122 silly cache add parsed spec { raw: 'bindings@1.2.1',
+122 silly cache add   scope: null,
+122 silly cache add   name: 'bindings',
+122 silly cache add   rawSpec: '1.2.1',
+122 silly cache add   spec: '1.2.1',
+122 silly cache add   type: 'version' }
+123 silly addNamed bindings@1.2.1
+124 verbose addNamed "1.2.1" is a plain semver version for bindings
+125 silly mapToRegistry name bindings
+126 silly mapToRegistry using default registry
+127 silly mapToRegistry registry https://registry.npmjs.org/
+128 silly mapToRegistry uri https://registry.npmjs.org/bindings
+129 verbose addNameVersion registry:https://registry.npmjs.org/bindings not in flight; fetching
+130 silly cache add parsed spec { raw: 'nan@2.0.5',
+130 silly cache add   scope: null,
+130 silly cache add   name: 'nan',
+130 silly cache add   rawSpec: '2.0.5',
+130 silly cache add   spec: '2.0.5',
+130 silly cache add   type: 'version' }
+131 silly addNamed nan@2.0.5
+132 verbose addNamed "2.0.5" is a plain semver version for nan
+133 silly mapToRegistry name nan
+134 silly mapToRegistry using default registry
+135 silly mapToRegistry registry https://registry.npmjs.org/
+136 silly mapToRegistry uri https://registry.npmjs.org/nan
+137 verbose addNameVersion registry:https://registry.npmjs.org/nan not in flight; fetching
+138 verbose request uri https://registry.npmjs.org/bindings
+139 verbose request no auth needed
+140 info attempt registry request try #1 at 19:24:39
+141 verbose etag "1LLBF9OH58DLBEL4629U6032D"
+142 http request GET https://registry.npmjs.org/bindings
+143 verbose request uri https://registry.npmjs.org/nan
+144 verbose request no auth needed
+145 info attempt registry request try #1 at 19:24:39
+146 verbose etag "7Y2U1A5TWU1O0YTKGMD4FB8ZN"
+147 http request GET https://registry.npmjs.org/nan
+148 http 304 https://registry.npmjs.org/bindings
+149 silly get cb [ 304,
+149 silly get   { date: 'Wed, 10 Feb 2016 18:24:45 GMT',
+149 silly get     via: '1.1 varnish',
+149 silly get     'cache-control': 'max-age=300',
+149 silly get     etag: '"1LLBF9OH58DLBEL4629U6032D"',
+149 silly get     age: '162',
+149 silly get     connection: 'keep-alive',
+149 silly get     'x-served-by': 'cache-fra1223-FRA',
+149 silly get     'x-cache': 'HIT',
+149 silly get     'x-cache-hits': '2',
+149 silly get     'x-timer': 'S1455128685.392507,VS0,VE0',
+149 silly get     vary: 'Accept' } ]
+150 verbose etag https://registry.npmjs.org/bindings from cache
+151 verbose get saving bindings to C:\Users\ASUS\AppData\Roaming\npm-cache\registry.npmjs.org\bindings\.cache.json
+152 silly cache afterAdd bindings@1.2.1
+153 verbose afterAdd C:\Users\ASUS\AppData\Roaming\npm-cache\bindings\1.2.1\package\package.json not in flight; writing
+154 verbose afterAdd C:\Users\ASUS\AppData\Roaming\npm-cache\bindings\1.2.1\package\package.json written
+155 http 304 https://registry.npmjs.org/nan
+156 silly get cb [ 304,
+156 silly get   { date: 'Wed, 10 Feb 2016 18:24:45 GMT',
+156 silly get     via: '1.1 varnish',
+156 silly get     'cache-control': 'max-age=300',
+156 silly get     etag: '"7Y2U1A5TWU1O0YTKGMD4FB8ZN"',
+156 silly get     age: '65',
+156 silly get     connection: 'keep-alive',
+156 silly get     'x-served-by': 'cache-fra1238-FRA',
+156 silly get     'x-cache': 'HIT',
+156 silly get     'x-cache-hits': '2',
+156 silly get     'x-timer': 'S1455128685.404346,VS0,VE0',
+156 silly get     vary: 'Accept' } ]
+157 verbose etag https://registry.npmjs.org/nan from cache
+158 verbose get saving nan to C:\Users\ASUS\AppData\Roaming\npm-cache\registry.npmjs.org\nan\.cache.json
+159 silly cache afterAdd nan@2.0.5
+160 verbose afterAdd C:\Users\ASUS\AppData\Roaming\npm-cache\nan\2.0.5\package\package.json not in flight; writing
+161 verbose afterAdd C:\Users\ASUS\AppData\Roaming\npm-cache\nan\2.0.5\package\package.json written
+162 silly install resolved [ { name: 'bindings',
+162 silly install resolved     description: 'Helper module for loading your native module\'s .node file',
+162 silly install resolved     keywords: [ 'native', 'addon', 'bindings', 'gyp', 'waf', 'c', 'c++' ],
+162 silly install resolved     version: '1.2.1',
+162 silly install resolved     author:
+162 silly install resolved      { name: 'Nathan Rajlich',
+162 silly install resolved        email: 'nathan@tootallnate.net',
+162 silly install resolved        url: 'http://tootallnate.net' },
+162 silly install resolved     repository:
+162 silly install resolved      { type: 'git',
+162 silly install resolved        url: 'git://github.com/TooTallNate/node-bindings.git' },
+162 silly install resolved     main: './bindings.js',
+162 silly install resolved     bugs: { url: 'https://github.com/TooTallNate/node-bindings/issues' },
+162 silly install resolved     homepage: 'https://github.com/TooTallNate/node-bindings',
+162 silly install resolved     license: 'MIT',
+162 silly install resolved     gitHead: 'e404152ee27f8478ccbc7122ee051246e8e5ec02',
+162 silly install resolved     _id: 'bindings@1.2.1',
+162 silly install resolved     scripts: {},
+162 silly install resolved     _shasum: '14ad6113812d2d37d72e67b4cacb4bb726505f11',
+162 silly install resolved     _from: 'bindings@1.2.1',
+162 silly install resolved     _npmVersion: '1.4.14',
+162 silly install resolved     _npmUser: { name: 'tootallnate', email: 'nathan@tootallnate.net' },
+162 silly install resolved     maintainers: [ [Object], [Object] ],
+162 silly install resolved     dist:
+162 silly install resolved      { shasum: '14ad6113812d2d37d72e67b4cacb4bb726505f11',
+162 silly install resolved        tarball: 'http://registry.npmjs.org/bindings/-/bindings-1.2.1.tgz' },
+162 silly install resolved     directories: {},
+162 silly install resolved     _resolved: 'https://registry.npmjs.org/bindings/-/bindings-1.2.1.tgz',
+162 silly install resolved     readme: 'ERROR: No README data found!' },
+162 silly install resolved   { name: 'nan',
+162 silly install resolved     version: '2.0.5',
+162 silly install resolved     description: 'Native Abstractions for Node.js: C++ header for Node 0.8->0.12 compatibility',
+162 silly install resolved     main: 'include_dirs.js',
+162 silly install resolved     repository: { type: 'git', url: 'git://github.com/nodejs/nan.git' },
+162 silly install resolved     scripts:
+162 silly install resolved      { test: 'tap --gc test/js/*-test.js',
+162 silly install resolved        'rebuild-tests': 'pangyp rebuild --msvs_version=2013 --directory test',
+162 silly install resolved        docs: 'doc/.build.sh' },
+162 silly install resolved     contributors:
+162 silly install resolved      [ [Object],
+162 silly install resolved        [Object],
+162 silly install resolved        [Object],
+162 silly install resolved        [Object],
+162 silly install resolved        [Object],
+162 silly install resolved        [Object],
+162 silly install resolved        [Object] ],
+162 silly install resolved     devDependencies:
+162 silly install resolved      { bindings: '~1.2.1',
+162 silly install resolved        'node-gyp': '~2.0.2',
+162 silly install resolved        pangyp: '~2.2.0',
+162 silly install resolved        tap: '~0.7.1',
+162 silly install resolved        xtend: '~4.0.0' },
+162 silly install resolved     license: 'MIT',
+162 silly install resolved     gitHead: 'd13a2e9ce762fd130877b53c71d35963fa2cf689',
+162 silly install resolved     bugs: { url: 'https://github.com/nodejs/nan/issues' },
+162 silly install resolved     homepage: 'https://github.com/nodejs/nan#readme',
+162 silly install resolved     _id: 'nan@2.0.5',
+162 silly install resolved     _shasum: '365888014be1fd178db0cbfa258edf7b0cb1c408',
+162 silly install resolved     _from: 'nan@2.0.5',
+162 silly install resolved     _npmVersion: '2.13.3',
+162 silly install resolved     _nodeVersion: '3.0.0',
+162 silly install resolved     _npmUser: { name: 'kkoopa', email: 'bbyholm@abo.fi' },
+162 silly install resolved     maintainers: [ [Object], [Object] ],
+162 silly install resolved     dist:
+162 silly install resolved      { shasum: '365888014be1fd178db0cbfa258edf7b0cb1c408',
+162 silly install resolved        tarball: 'http://registry.npmjs.org/nan/-/nan-2.0.5.tgz' },
+162 silly install resolved     directories: {},
+162 silly install resolved     _resolved: 'https://registry.npmjs.org/nan/-/nan-2.0.5.tgz',
+162 silly install resolved     readme: 'ERROR: No README data found!' } ]
+163 info install bindings@1.2.1 into C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt
+164 info install nan@2.0.5 into C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt
+165 info installOne bindings@1.2.1
+166 verbose installOne of bindings to C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt not in flight; installing
+167 info installOne nan@2.0.5
+168 verbose installOne of nan to C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt not in flight; installing
+169 verbose lock using C:\Users\ASUS\AppData\Roaming\npm-cache\_locks\bindings-1d000a23c9659c8e.lock for C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\bindings
+170 verbose lock using C:\Users\ASUS\AppData\Roaming\npm-cache\_locks\nan-38fcdb8c5d961ab6.lock for C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\nan
+171 silly install write writing bindings 1.2.1 to C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\bindings
+172 silly install write writing nan 2.0.5 to C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\nan
+173 verbose unbuild node_modules\bcrypt\node_modules\bindings
+174 verbose unbuild node_modules\bcrypt\node_modules\nan
+175 silly gentlyRm C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\bindings is being purged from base C:\Users\ASUS\Desktop\AAa\Razvoj2015
+176 verbose gentlyRm don't care about contents; nuking C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\bindings
+177 verbose tar unpack C:\Users\ASUS\AppData\Roaming\npm-cache\bindings\1.2.1\package.tgz
+178 verbose tar unpacking to C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\bindings
+179 silly gentlyRm C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\bindings is being purged
+180 verbose gentlyRm don't care about contents; nuking C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\bindings
+181 silly gentlyRm C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\nan is being purged from base C:\Users\ASUS\Desktop\AAa\Razvoj2015
+182 verbose gentlyRm don't care about contents; nuking C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\nan
+183 silly gunzTarPerm modes [ '777', '666' ]
+184 verbose tar unpack C:\Users\ASUS\AppData\Roaming\npm-cache\nan\2.0.5\package.tgz
+185 verbose tar unpacking to C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\nan
+186 silly gentlyRm C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\nan is being purged
+187 verbose gentlyRm don't care about contents; nuking C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\nan
+188 silly gunzTarPerm modes [ '777', '666' ]
+189 silly gunzTarPerm extractEntry package.json
+190 silly gunzTarPerm modified mode [ 'package.json', 420, 438 ]
+191 silly gunzTarPerm extractEntry package.json
+192 silly gunzTarPerm modified mode [ 'package.json', 436, 438 ]
+193 silly gunzTarPerm extractEntry README.md
+194 silly gunzTarPerm modified mode [ 'README.md', 420, 438 ]
+195 silly gunzTarPerm extractEntry bindings.js
+196 silly gunzTarPerm modified mode [ 'bindings.js', 420, 438 ]
+197 silly gunzTarPerm extractEntry README.md
+198 silly gunzTarPerm modified mode [ 'README.md', 436, 438 ]
+199 silly gunzTarPerm extractEntry include_dirs.js
+200 silly gunzTarPerm modified mode [ 'include_dirs.js', 436, 438 ]
+201 silly gunzTarPerm extractEntry nan_converters.h
+202 silly gunzTarPerm modified mode [ 'nan_converters.h', 436, 438 ]
+203 silly gunzTarPerm extractEntry LICENSE.md
+204 silly gunzTarPerm modified mode [ 'LICENSE.md', 436, 438 ]
+205 silly gunzTarPerm extractEntry .dntrc
+206 silly gunzTarPerm modified mode [ '.dntrc', 436, 438 ]
+207 silly gunzTarPerm extractEntry appveyor.yml
+208 silly gunzTarPerm modified mode [ 'appveyor.yml', 436, 438 ]
+209 verbose write writing to C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\bindings\package.json
+210 info preinstall bindings@1.2.1
+211 silly gunzTarPerm extractEntry doc/new.md
+212 silly gunzTarPerm modified mode [ 'doc/new.md', 436, 438 ]
+213 silly gunzTarPerm extractEntry doc/.build.sh
+214 silly gunzTarPerm modified mode [ 'doc/.build.sh', 509, 511 ]
+215 verbose readDependencies loading dependencies from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\bindings\package.json
+216 verbose readDependencies loading dependencies from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\bindings\package.json
+217 silly gunzTarPerm extractEntry doc/buffers.md
+218 silly gunzTarPerm modified mode [ 'doc/buffers.md', 436, 438 ]
+219 silly gunzTarPerm extractEntry doc/callback.md
+220 silly gunzTarPerm modified mode [ 'doc/callback.md', 436, 438 ]
+221 silly install resolved []
+222 verbose about to build C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\bindings
+223 info build C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\bindings
+224 info linkStuff bindings@1.2.1
+225 silly linkStuff bindings@1.2.1 has C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules as its parent node_modules
+226 silly gunzTarPerm extractEntry doc/converters.md
+227 silly gunzTarPerm modified mode [ 'doc/converters.md', 436, 438 ]
+228 silly gunzTarPerm extractEntry doc/errors.md
+229 silly gunzTarPerm modified mode [ 'doc/errors.md', 436, 438 ]
+230 verbose linkBins bindings@1.2.1
+231 verbose linkMans bindings@1.2.1
+232 verbose rebuildBundles bindings@1.2.1
+233 info install bindings@1.2.1
+234 info postinstall bindings@1.2.1
+235 verbose unlock done using C:\Users\ASUS\AppData\Roaming\npm-cache\_locks\bindings-1d000a23c9659c8e.lock for C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\bindings
+236 silly gunzTarPerm extractEntry doc/maybe_types.md
+237 silly gunzTarPerm modified mode [ 'doc/maybe_types.md', 436, 438 ]
+238 silly gunzTarPerm extractEntry doc/methods.md
+239 silly gunzTarPerm modified mode [ 'doc/methods.md', 436, 438 ]
+240 silly gunzTarPerm extractEntry doc/asyncworker.md
+241 silly gunzTarPerm modified mode [ 'doc/asyncworker.md', 436, 438 ]
+242 silly gunzTarPerm extractEntry doc/node_misc.md
+243 silly gunzTarPerm modified mode [ 'doc/node_misc.md', 436, 438 ]
+244 silly gunzTarPerm extractEntry doc/persistent.md
+245 silly gunzTarPerm modified mode [ 'doc/persistent.md', 436, 438 ]
+246 silly gunzTarPerm extractEntry doc/scopes.md
+247 silly gunzTarPerm modified mode [ 'doc/scopes.md', 436, 438 ]
+248 silly gunzTarPerm extractEntry doc/script.md
+249 silly gunzTarPerm modified mode [ 'doc/script.md', 436, 438 ]
+250 silly gunzTarPerm extractEntry doc/string_bytes.md
+251 silly gunzTarPerm modified mode [ 'doc/string_bytes.md', 436, 438 ]
+252 silly gunzTarPerm extractEntry doc/v8_internals.md
+253 silly gunzTarPerm modified mode [ 'doc/v8_internals.md', 436, 438 ]
+254 silly gunzTarPerm extractEntry doc/v8_misc.md
+255 silly gunzTarPerm modified mode [ 'doc/v8_misc.md', 436, 438 ]
+256 silly gunzTarPerm extractEntry nan.h
+257 silly gunzTarPerm modified mode [ 'nan.h', 436, 438 ]
+258 silly gunzTarPerm extractEntry nan_callbacks.h
+259 silly gunzTarPerm modified mode [ 'nan_callbacks.h', 436, 438 ]
+260 silly gunzTarPerm extractEntry nan_callbacks_12_inl.h
+261 silly gunzTarPerm modified mode [ 'nan_callbacks_12_inl.h', 436, 438 ]
+262 silly gunzTarPerm extractEntry nan_callbacks_pre_12_inl.h
+263 silly gunzTarPerm modified mode [ 'nan_callbacks_pre_12_inl.h', 436, 438 ]
+264 silly gunzTarPerm extractEntry nan_converters_43_inl.h
+265 silly gunzTarPerm modified mode [ 'nan_converters_43_inl.h', 436, 438 ]
+266 silly gunzTarPerm extractEntry nan_converters_pre_43_inl.h
+267 silly gunzTarPerm modified mode [ 'nan_converters_pre_43_inl.h', 436, 438 ]
+268 silly gunzTarPerm extractEntry nan_implementation_12_inl.h
+269 silly gunzTarPerm modified mode [ 'nan_implementation_12_inl.h', 436, 438 ]
+270 silly gunzTarPerm extractEntry nan_implementation_pre_12_inl.h
+271 silly gunzTarPerm modified mode [ 'nan_implementation_pre_12_inl.h', 436, 438 ]
+272 silly gunzTarPerm extractEntry nan_maybe_43_inl.h
+273 silly gunzTarPerm modified mode [ 'nan_maybe_43_inl.h', 436, 438 ]
+274 silly gunzTarPerm extractEntry nan_maybe_pre_43_inl.h
+275 silly gunzTarPerm modified mode [ 'nan_maybe_pre_43_inl.h', 436, 438 ]
+276 silly gunzTarPerm extractEntry nan_new.h
+277 silly gunzTarPerm modified mode [ 'nan_new.h', 436, 438 ]
+278 silly gunzTarPerm extractEntry nan_object_wrap.h
+279 silly gunzTarPerm modified mode [ 'nan_object_wrap.h', 436, 438 ]
+280 silly gunzTarPerm extractEntry nan_persistent_12_inl.h
+281 silly gunzTarPerm modified mode [ 'nan_persistent_12_inl.h', 436, 438 ]
+282 silly gunzTarPerm extractEntry nan_persistent_pre_12_inl.h
+283 silly gunzTarPerm modified mode [ 'nan_persistent_pre_12_inl.h', 436, 438 ]
+284 silly gunzTarPerm extractEntry nan_string_bytes.h
+285 silly gunzTarPerm modified mode [ 'nan_string_bytes.h', 436, 438 ]
+286 silly gunzTarPerm extractEntry nan_weak.h
+287 silly gunzTarPerm modified mode [ 'nan_weak.h', 436, 438 ]
+288 silly gunzTarPerm extractEntry CHANGELOG.md
+289 silly gunzTarPerm modified mode [ 'CHANGELOG.md', 436, 438 ]
+290 silly gunzTarPerm extractEntry tools/package.json
+291 silly gunzTarPerm modified mode [ 'tools/package.json', 436, 438 ]
+292 silly gunzTarPerm extractEntry tools/README.md
+293 silly gunzTarPerm modified mode [ 'tools/README.md', 436, 438 ]
+294 silly gunzTarPerm extractEntry tools/1to2.js
+295 silly gunzTarPerm modified mode [ 'tools/1to2.js', 509, 511 ]
+296 verbose write writing to C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\nan\package.json
+297 info preinstall nan@2.0.5
+298 verbose readDependencies loading dependencies from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\nan\package.json
+299 verbose readDependencies loading dependencies from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\nan\package.json
+300 silly install resolved []
+301 verbose about to build C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\nan
+302 info build C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\nan
+303 info linkStuff nan@2.0.5
+304 silly linkStuff nan@2.0.5 has C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules as its parent node_modules
+305 verbose linkBins nan@2.0.5
+306 verbose linkMans nan@2.0.5
+307 verbose rebuildBundles nan@2.0.5
+308 info install nan@2.0.5
+309 info postinstall nan@2.0.5
+310 verbose unlock done using C:\Users\ASUS\AppData\Roaming\npm-cache\_locks\nan-38fcdb8c5d961ab6.lock for C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt\node_modules\nan
+311 verbose about to build C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt
+312 info build C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt
+313 info linkStuff bcrypt@0.8.5
+314 silly linkStuff bcrypt@0.8.5 has C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules as its parent node_modules
+315 verbose linkBins bcrypt@0.8.5
+316 verbose linkMans bcrypt@0.8.5
+317 verbose rebuildBundles bcrypt@0.8.5
+318 verbose rebuildBundles [ 'bindings', 'nan' ]
+319 info install bcrypt@0.8.5
+320 verbose unsafe-perm in lifecycle true
+321 info bcrypt@0.8.5 Failed to exec install script
+322 verbose unlock done using C:\Users\ASUS\AppData\Roaming\npm-cache\_locks\bcrypt-4c94194242797124.lock for C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt
+323 verbose stack Error: bcrypt@0.8.5 install: `node-gyp rebuild`
+323 verbose stack Exit status 1
+323 verbose stack     at EventEmitter.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\lifecycle.js:213:16)
+323 verbose stack     at EventEmitter.emit (events.js:110:17)
+323 verbose stack     at ChildProcess.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\spawn.js:24:14)
+323 verbose stack     at ChildProcess.emit (events.js:110:17)
+323 verbose stack     at maybeClose (child_process.js:1015:16)
+323 verbose stack     at Process.ChildProcess._handle.onexit (child_process.js:1087:5)
+324 verbose pkgid bcrypt@0.8.5
+325 verbose cwd C:\Users\ASUS\Desktop\AAa\Razvoj2015
+326 error Windows_NT 6.3.9600
+327 error argv "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "i" "bcrypt" "--python"
+328 error node v0.12.4
+329 error npm  v2.10.1
+330 error code ELIFECYCLE
+331 error bcrypt@0.8.5 install: `node-gyp rebuild`
+331 error Exit status 1
+332 error Failed at the bcrypt@0.8.5 install script 'node-gyp rebuild'.
+332 error This is most likely a problem with the bcrypt package,
+332 error not with npm itself.
+332 error Tell the author that this fails on your system:
+332 error     node-gyp rebuild
+332 error You can get their info via:
+332 error     npm owner ls bcrypt
+332 error There is likely additional logging output above.
+333 verbose exit [ 1, true ]
+334 verbose unbuild node_modules\bcrypt
+335 info preuninstall bcrypt@0.8.5
+336 info uninstall bcrypt@0.8.5
+337 verbose unbuild rmStuff bcrypt@0.8.5 from C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules
+338 info postuninstall bcrypt@0.8.5
+339 silly gentlyRm C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt is being purged from base C:\Users\ASUS\Desktop\AAa\Razvoj2015
+340 verbose gentlyRm don't care about contents; nuking C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt
+341 silly vacuum-fs purging C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules\bcrypt
+342 silly vacuum-fs quitting because other entries in C:\Users\ASUS\Desktop\AAa\Razvoj2015\node_modules

@@ -50,7 +50,7 @@
           <input type="text" class="form-control" placeholder="Search" id="search" ng-keyup="search()" autocomplete="off" autocorrect="off">
 <!--            <span>{{searchResults}}</span>-->
         </div>
-        <button type="submit" class="btn btn-default" ng-click="null">Submit</button>
+<!--        <button type="submit" class="btn btn-default" ng-click="null">Submit</button>-->
 <!--          <div>{{searchResults}}</div>-->
       </form>
 
@@ -80,7 +80,16 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container-fluid">	
+<div class="container-fluid">
+<div class="predict-items" style="
+        position: absolute;
+        left: 80%;
+        top: 8%;
+        width: 20%;
+        height: 100%;
+    
+        ">
+       </div>
     <div class="row" style="margin-bottom:3px;" ng-controller="profileHeaderController" ng-init="getProfilePic()">
 				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5
 				">
@@ -217,7 +226,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <!--	<script src="javascripts/task.js"></script>-->
-<!--	<script src="javascripts/buttons.js"></script>-->
+	<script src="javascripts/buttons.js"></script>
 
 	</body>
 

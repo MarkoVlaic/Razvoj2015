@@ -1,0 +1,26 @@
+#include<iostream>
+#include <stdlib.h>
+
+using namespace std;
+
+int maximum(int x, int y){
+    if(x+65>y+65) return x+65;
+    return y+65;
+}
+
+
+int main(){
+    int a;
+    cin >> a;
+    a=a*2-1;
+    for(int i = -(a/2);i<a/2+1;i++){
+        for(int j = -(a/2);j<a/2+1;j++){
+        //cout << i << " " << j << endl;
+            char d = maximum(abs(i),abs(j));
+            cout << d;
+        }
+        cout << endl;
+    }
+
+
+}

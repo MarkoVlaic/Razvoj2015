@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+//var bcrypt = require('bcrypt');
+//var salt = bcrypt.genSaltSync(10);
 var Schema = mongoose.Schema;
 
 var path = require('path');
@@ -53,7 +55,7 @@ router.post('/register',function(req,res){
             country:req.body.country,
             bio:"No information yet"
 			});
-		
+		console.log("NewUsers password",newUser['password'])
 		newUser.save(function(err,userSaved){
 			if(err) throw err;
 			console.log('User saved');
